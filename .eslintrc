@@ -20,6 +20,7 @@
       }
     },
     "rules": {
+      "jsx-a11y/label-has-for": "off",
       "no-param-reassign": "off",
       "function-paren-newline": "off",
       "arrow-parens": [

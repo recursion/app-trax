@@ -13,7 +13,13 @@ const makeSelectLocation = () => createSelector(
   (routeState) => routeState.get('location').toJS()
 );
 
+const makeSelectApplications = () => createSelector(
+  selectGlobal,
+  (globalState) => globalState.get('applications').toJS()
+);
+
 export {
   selectGlobal,
   makeSelectLocation,
+  makeSelectApplications
 };

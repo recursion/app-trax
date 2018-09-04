@@ -1,23 +1,13 @@
-/*
 import { fromJS } from 'immutable';
 
 import appReducer from '../reducer';
-import {
-  loadRepos,
-  reposLoaded,
-  repoLoadingError,
-} from '../actions';
+import { addApplication } from '../actions';
 
 describe('appReducer', () => {
   let state;
   beforeEach(() => {
     state = fromJS({
-      loading: false,
-      error: false,
-      currentUser: false,
-      userData: fromJS({
-        repositories: false,
-      }),
+      applications: []
     });
   });
 
@@ -26,14 +16,15 @@ describe('appReducer', () => {
     expect(appReducer(undefined, {})).toEqual(expectedResult);
   });
 
-  it('should handle the loadRepos action correctly', () => {
+  it('should handle the addApplictions action correctly', () => {
+    const fixture = { company: 'Test' };
     const expectedResult = state
-      .set('loading', true)
-      .set('error', false)
-      .setIn(['userData', 'repositories'], false);
+      .set('applications', state.get('applications').push(fixture));
 
-    expect(appReducer(state, loadRepos())).toEqual(expectedResult);
+    expect(appReducer(state, addApplication(fixture))).toEqual(expectedResult);
   });
+});
+/*
 
   it('should handle the reposLoaded action correctly', () => {
     const fixture = [{

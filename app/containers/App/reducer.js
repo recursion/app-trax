@@ -12,8 +12,7 @@
 
 import { fromJS } from 'immutable';
 
-import {
-} from './constants';
+import { ADD_APPLICATION } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
@@ -22,6 +21,9 @@ const initialState = fromJS({
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
+    case ADD_APPLICATION:
+      return state
+        .set('applications', state.get('applications').push(action.application));
     default:
       return state;
   }

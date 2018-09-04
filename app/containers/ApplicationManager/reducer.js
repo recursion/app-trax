@@ -16,7 +16,7 @@ function applicationManagerReducer(state = initialState, action) {
   switch (action.type) {
     case TOGGLE_NEW_APPLICATION_INPUT:
       return state
-        .set('showNewApplicationInput', !state.showNewApplicationInput);
+        .set('showNewApplicationInput', !state.toJS().showNewApplicationInput);
     default:
       return state;
   }

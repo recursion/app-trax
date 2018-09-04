@@ -1,4 +1,3 @@
-/*
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Route } from 'react-router-dom';
@@ -23,4 +22,3 @@ describe('<App />', () => {
     expect(renderedComponent.find(Footer).length).toBe(1);
   });
 });
-*/
