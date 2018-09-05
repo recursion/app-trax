@@ -34,7 +34,7 @@ export default class ApplicationManager extends React.PureComponent {
             /> :
             ''
           }
-          {(this.props.applications && this.props.applications.length > 0) ?
+          {(!this.state.showNewApplicationForm && this.props.applications && this.props.applications.length > 0) ?
             <ApplicationsList apps={this.props.applications} /> : ''
           }
         </div>
