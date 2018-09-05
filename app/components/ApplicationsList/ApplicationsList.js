@@ -4,7 +4,7 @@ import ApplicationItem from 'containers/ApplicationItem';
 
 const ApplicationsList = (props) => (
   <ul>
-    {props.apps.map((app) => (<ApplicationItem key={app.company} {...app} />))}
+    {props.apps.map((app) => <ApplicationItem key={app.createdAt} {...app} />)}
   </ul>
 );
 
