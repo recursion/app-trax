@@ -1,17 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NewApplicationForm from 'components/NewApplicationForm';
+import ApplicationsList from 'components/ApplicationsList';
 import './style.scss';
-
-const ApplicationsList = (props) => (
-  <ul>
-    {props.apps.map((app) => (<li key={app.company}>{app.company}</li>))}
-  </ul>
-);
-
-ApplicationsList.propTypes = {
-  apps: PropTypes.array
-};
 
 export default class ApplicationManager extends React.PureComponent {
   constructor(props) {
@@ -21,10 +12,9 @@ export default class ApplicationManager extends React.PureComponent {
   }
 
   toggleShowNewApplicationInput() {
-    this.setState((props, state) => ({
-      showNewApplicationForm: !state.showNewApplicationForm
-    }));
+    this.setState((state) => ({ showNewApplicationForm: !state.showNewApplicationForm }));
   }
+
   render() {
     return (
       <article className="application-manager">
