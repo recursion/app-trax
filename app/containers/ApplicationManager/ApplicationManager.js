@@ -19,7 +19,7 @@ export default class ApplicationManager extends React.PureComponent {
     return (
       <article className="application-manager">
         <div className="container is-fluid">
-          <h1 className="title is-inline is-size-4">Open Applications</h1>
+          <h1 className="title is-inline is-size-4">Applications</h1>
           <button
             className="btn-new button is-info is-small is-inline is-pulled-right"
             onClick={this.toggleShowNewApplicationInput}
