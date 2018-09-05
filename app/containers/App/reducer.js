@@ -23,7 +23,8 @@ function appReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_APPLICATION:
       return state
-        .set('applications', state.get('applications').push(action.application));
+        .set('applications', state.get('applications')
+          .push(Object.assign({}, { createdAt: Date.now() }, action.application)));
     default:
       return state;
   }
