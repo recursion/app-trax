@@ -7,11 +7,19 @@ export default class NewApplicationForm extends React.PureComponent {
     this.state = {
       company: '',
       contact: '',
-      notes: ''
+      notes: '',
+      status: 'Considering'
     };
     this.handleCompanyChange = this.handleCompanyChange.bind(this);
     this.handleContactChange = this.handleContactChange.bind(this);
-    this.handleNotesChange = this.handleContactChange.bind(this);
+    this.handleNotesChange = this.handleNotesChange.bind(this);
+    this.handleStatusChange = this.handleStatusChange.bind(this);
+  }
+
+  handleStatusChange(status) {
+    this.setState(() => ({
+      status
+    }));
   }
 
   handleCompanyChange(company) {
@@ -34,7 +42,7 @@ export default class NewApplicationForm extends React.PureComponent {
 
   render() {
     return (
-      <div className="new-app-form">
+      <div className="new-app-form section">
         <div className="field is-horizontal">
           <div className="field-label is-normal">
             <label className="label" htmlFor="company">Company</label>
@@ -87,7 +95,7 @@ export default class NewApplicationForm extends React.PureComponent {
                   className="textarea"
                   value={this.state.notes}
                   placeholder="e.g. Applied online at.... Application included technical questions and resume attachment."
-                  onChange={(e) => this.handleNoteChange(e.target.value)}
+                  onChange={(e) => this.handleNotesChange(e.target.value)}
                 />
               </div>
             </div>
@@ -102,9 +110,9 @@ export default class NewApplicationForm extends React.PureComponent {
             <div className="field">
               <div className="control">
                 <div className="select is-fullwidth">
-                  <select>
-                    <option>Considering</option>
+                  <select value={this.state.status} onChange={(e) => this.handleStatusChange(e.target.value)}>
                     <option>Applied</option>
+                    <option>Considering</option>
                     <option>No Reply</option>
                     <option>Interviewing</option>
                     <option>Take Home Project</option>
@@ -128,7 +136,8 @@ export default class NewApplicationForm extends React.PureComponent {
                 this.props.onSubmit({
                   company: this.state.company,
                   contact: this.state.contact,
-                  notes: this.state.notes
+                  notes: this.state.notes,
+                  status: this.state.status
                 });
                 this.props.onCancel();
               }}

@@ -18,26 +18,23 @@ export default class ApplicationManager extends React.PureComponent {
   render() {
     return (
       <article className="application-manager">
-        <div className="container is-fluid">
-          <h1 className="title is-inline is-size-4">Applications</h1>
-          <button
-            className="btn-new button is-info is-small is-inline is-pulled-right"
-            onClick={this.toggleShowNewApplicationInput}
-          >
-            {(this.state.showNewApplicationForm) ? 'x' : '+'}
-          </button>
-          <hr />
-          {(this.state.showNewApplicationForm) ?
-            <NewApplicationForm
-              onSubmit={this.props.addApplication}
-              onCancel={this.toggleShowNewApplicationInput}
-            /> :
-            ''
-          }
-          {(!this.state.showNewApplicationForm && this.props.applications && this.props.applications.length > 0) ?
-            <ApplicationsList apps={this.props.applications} /> : ''
-          }
-        </div>
+        <h1 className="title is-inline is-size-4">Appy</h1>
+        <button
+          className="btn-new button is-info is-small is-inline is-pulled-right"
+          onClick={this.toggleShowNewApplicationInput}
+        >
+          {(this.state.showNewApplicationForm) ? 'x' : '+'}
+        </button>
+        {(this.state.showNewApplicationForm) ?
+          <NewApplicationForm
+            onSubmit={this.props.addApplication}
+            onCancel={this.toggleShowNewApplicationInput}
+          /> :
+          ''
+        }
+        {(!this.state.showNewApplicationForm && this.props.applications && this.props.applications.length > 0) ?
+          <ApplicationsList apps={this.props.applications} /> : ''
+        }
       </article>
     );
   }
