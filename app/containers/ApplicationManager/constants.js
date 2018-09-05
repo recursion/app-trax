@@ -8,4 +8,3 @@
  * Follow this format:
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
-export const TOGGLE_NEW_APPLICATION_INPUT = 'jtracker/applicationManager/TOGGLE_NEW_APPLICATION_INPUT';

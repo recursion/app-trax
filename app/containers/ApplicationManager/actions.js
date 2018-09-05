@@ -1,4 +1,4 @@
-import { TOGGLE_NEW_APPLICATION_INPUT } from './constants';
+import { } from './constants';
 
 /*
  * App Actions
@@ -16,9 +16,3 @@ import { TOGGLE_NEW_APPLICATION_INPUT } from './constants';
  *        return { type: YOUR_ACTION_CONSTANT, var: var }
  *    }
  */
-
-export function toggleNewApplicationInput() {
-  return {
-    type: TOGGLE_NEW_APPLICATION_INPUT
-  };
-}
