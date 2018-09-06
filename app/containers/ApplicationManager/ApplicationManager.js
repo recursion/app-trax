@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NewApplicationForm from 'components/NewApplicationForm';
+import ApplicationForm from 'components/ApplicationForm';
 import ApplicationsList from 'components/ApplicationsList';
 import './style.scss';
 
@@ -11,10 +11,6 @@ export default class ApplicationManager extends React.PureComponent {
     this.toggleShowNewApplicationInput = this.toggleShowNewApplicationInput.bind(this);
   }
 
-  componentDidMount() {
-    this.props.loadApplications();
-  }
-
   toggleShowNewApplicationInput() {
     this.setState((state) => ({ showNewApplicationForm: !state.showNewApplicationForm }));
   }
@@ -22,7 +18,7 @@ export default class ApplicationManager extends React.PureComponent {
   render() {
     return (
       <article className="application-manager">
-        <h1 className="title is-inline is-size-4">Appy</h1>
+        <h1 className="title is-inline is-size-4">Applications</h1>
         <button
           className="btn-new button is-info is-small is-inline is-pulled-right"
           onClick={this.toggleShowNewApplicationInput}
@@ -30,7 +26,7 @@ export default class ApplicationManager extends React.PureComponent {
           {(this.state.showNewApplicationForm) ? 'x' : '+'}
         </button>
         {(this.state.showNewApplicationForm) ?
-          <NewApplicationForm
+          <ApplicationForm
             onSubmit={this.props.addApplication}
             onCancel={this.toggleShowNewApplicationInput}
           /> :
@@ -46,6 +42,5 @@ export default class ApplicationManager extends React.PureComponent {
 
 ApplicationManager.propTypes = {
   applications: PropTypes.array,
-  addApplication: PropTypes.func,
-  loadApplications: PropTypes.func
+  addApplication: PropTypes.func
 };

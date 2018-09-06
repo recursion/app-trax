@@ -1,4 +1,4 @@
-import { LOAD_APPLICATIONS, LOAD_APPLICATIONS_SUCCESS } from './constants';
+import {} from './constants';
 
 /*
  * App Actions
@@ -16,15 +16,3 @@ import { LOAD_APPLICATIONS, LOAD_APPLICATIONS_SUCCESS } from './constants';
  *        return { type: YOUR_ACTION_CONSTANT, var: var }
  *    }
  */
-export function loadApplications() {
-  return {
-    type: LOAD_APPLICATIONS
-  };
-}
-
-export function loadApplicationsSuccess(applications) {
-  return {
-    type: LOAD_APPLICATIONS_SUCCESS,
-    applications
-  };
-}
