@@ -11,6 +11,10 @@ export default class ApplicationManager extends React.PureComponent {
     this.toggleShowNewApplicationInput = this.toggleShowNewApplicationInput.bind(this);
   }
 
+  componentDidMount() {
+    this.props.loadApplications();
+  }
+
   toggleShowNewApplicationInput() {
     this.setState((state) => ({ showNewApplicationForm: !state.showNewApplicationForm }));
   }
@@ -42,5 +46,6 @@ export default class ApplicationManager extends React.PureComponent {
 
 ApplicationManager.propTypes = {
   applications: PropTypes.array,
-  addApplication: PropTypes.func
+  addApplication: PropTypes.func,
+  loadApplications: PropTypes.func
 };

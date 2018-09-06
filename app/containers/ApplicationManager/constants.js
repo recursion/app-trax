@@ -8,3 +8,6 @@
  * Follow this format:
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
+
+export const LOAD_APPLICATIONS = 'jobby/ApplicationManager/LOAD_APPLICATIONS';
+export const LOAD_APPLICATIONS_SUCCESS = 'jobby/ApplicationManager/LOAD_APPLICATIONS_SUCCESS';
