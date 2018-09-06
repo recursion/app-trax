@@ -31,9 +31,9 @@ describe('appReducer', () => {
     const target = initialState.get('applications').toJS()[0];
     const updateFixture = Object.assign({}, target, { company: 'FU' });
 
-    const nextState = appReducer(initialState, updateApplication(updateFixture));
+    const nextState = appReducer(initialState, updateApplication(updateFixture)).toJS();
 
-    expect(nextState.get('applications')
+    expect(nextState.applications
       .filter((app) => app.createdAt === target.createdAt)[0]).toEqual(updateFixture);
   });
 });
