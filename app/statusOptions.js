@@ -1,7 +1,7 @@
 const statusOptions = [
   'Applied',
   'Considering',
-  'Reply - Reviewing Application',
+  'Recieved Reply',
   'No Reply',
   'Interviewing',
   'Interviewing - Technical',
