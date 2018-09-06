@@ -14,9 +14,22 @@ import { fromJS } from 'immutable';
 
 import { ADD_APPLICATION } from './constants';
 
+// load applications state from localStorage
+export const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem('applications');
+    if (serializedState === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedState);
+  } catch (err) {
+    return undefined;
+  }
+};
+
 // The initial state of the App
 const initialState = fromJS({
-  applications: []
+  applications: loadState() || []
 });
 
 function appReducer(state = initialState, action) {
