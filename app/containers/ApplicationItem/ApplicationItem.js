@@ -32,7 +32,11 @@ export default class ApplicationItem extends React.PureComponent {
           <button onClick={this.toggleExpand}>
             <span className="subtitle">{this.props.company}</span>
           </button>
-          <span className={`application-item__status is-pulled-right is-size-7 ${getColor(this.props.status)}`}>{this.props.status}</span>
+          <button className={'application-item__status is-pulled-right is-size-7'}>
+            <span className={`${getColor(this.props.status)}`}>
+              {this.props.status}
+            </span>
+          </button>
         </div>
         <div className="application-item_controls container">
           {(this.state.expanded) ? <ApplicationItemDetails {...this.props} /> : ''}
