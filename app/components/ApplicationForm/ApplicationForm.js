@@ -5,38 +5,18 @@ export default class NewApplicationForm extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      company: '',
-      contact: '',
-      notes: '',
-      status: 'Considering'
+      // mode: props.mode || 'create',
+      company: props.company || '',
+      contact: props.contact || '',
+      notes: props.notes || '',
+      status: props.status || 'Considering'
     };
-    this.handleCompanyChange = this.handleCompanyChange.bind(this);
-    this.handleContactChange = this.handleContactChange.bind(this);
-    this.handleNotesChange = this.handleNotesChange.bind(this);
-    this.handleStatusChange = this.handleStatusChange.bind(this);
+    this.handleChangeField = this.handleChangeField.bind(this);
   }
 
-  handleStatusChange(status) {
+  handleChangeField(key, value) {
     this.setState(() => ({
-      status
-    }));
-  }
-
-  handleCompanyChange(company) {
-    this.setState(() => ({
-      company
-    }));
-  }
-
-  handleContactChange(contact) {
-    this.setState(() => ({
-      contact
-    }));
-  }
-
-  handleNotesChange(notes) {
-    this.setState(() => ({
-      notes
+      [key]: value
     }));
   }
 
@@ -56,7 +36,7 @@ export default class NewApplicationForm extends React.PureComponent {
                   type="text"
                   value={this.state.company}
                   placeholder="e.g. Apple inc"
-                  onChange={(e) => this.handleCompanyChange(e.target.value)}
+                  onChange={(e) => this.handleChangeField('company', e.target.value)}
                 />
               </div>
             </div>
@@ -76,7 +56,7 @@ export default class NewApplicationForm extends React.PureComponent {
                   type="text"
                   value={this.state.contact}
                   placeholder="e.g. Mark Jacobs <mark@apple.com>"
-                  onChange={(e) => this.handleContactChange(e.target.value)}
+                  onChange={(e) => this.handleChangeField('contact', e.target.value)}
                 />
               </div>
             </div>
@@ -95,7 +75,7 @@ export default class NewApplicationForm extends React.PureComponent {
                   className="textarea"
                   value={this.state.notes}
                   placeholder="e.g. Applied online at.... Application included technical questions and resume attachment."
-                  onChange={(e) => this.handleNotesChange(e.target.value)}
+                  onChange={(e) => this.handleChangeField('notes', e.target.value)}
                 />
               </div>
             </div>
@@ -110,7 +90,10 @@ export default class NewApplicationForm extends React.PureComponent {
             <div className="field">
               <div className="control">
                 <div className="select is-fullwidth">
-                  <select value={this.state.status} onChange={(e) => this.handleStatusChange(e.target.value)}>
+                  <select
+                    value={this.state.status}
+                    onChange={(e) => this.handleChangeField('status', e.target.value)}
+                  >
                     <option>Applied</option>
                     <option>Considering</option>
                     <option>No Reply</option>
@@ -156,5 +139,9 @@ export default class NewApplicationForm extends React.PureComponent {
 
 NewApplicationForm.propTypes = {
   onSubmit: PropTypes.func,
-  onCancel: PropTypes.func
+  onCancel: PropTypes.func,
+  company: PropTypes.string,
+  contact: PropTypes.string,
+  notes: PropTypes.string,
+  status: PropTypes.string
 };
