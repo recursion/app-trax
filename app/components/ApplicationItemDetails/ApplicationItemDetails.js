@@ -4,16 +4,16 @@ import './style.scss';
 
 const ApplicationItemDetails = (props) => (
   <div className="application-details container is-clearfix">
-    <div className="is-pulled-left">
-      {props.contact}
+    <div className="">
       <p>{props.notes}</p>
     </div>
-    <div className="application-details__controls">
-      <button className="button is-text is-small has-text-danger">+</button>
-      <button className="button is-text is-small has-text-danger">!!</button>
-      <button className="button is-text is-small has-text-danger">?</button>
-      <button className="button is-text is-small has-text-danger">X</button>
-    </div>
+    {(props.contact) ?
+      <div className="is-pulled-left">
+        <label className="is-size-7">Contact:</label>
+        <span className="is-size-6">{props.contact}</span>
+      </div> :
+      ''
+    }
   </div>
 );
 ApplicationItemDetails.propTypes = {
