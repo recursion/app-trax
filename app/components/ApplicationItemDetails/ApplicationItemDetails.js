@@ -5,7 +5,7 @@ import './style.scss';
 const ApplicationItemDetails = (props) => (
   <div className="application-details container is-clearfix">
     <div className="">
-      <p>{props.notes}</p>
+      <p>{props.state[0].notes}</p>
     </div>
     {(props.contact) ?
       <div className="is-pulled-left">
@@ -17,7 +17,8 @@ const ApplicationItemDetails = (props) => (
   </div>
 );
 ApplicationItemDetails.propTypes = {
+  notes: PropTypes.string,
   contact: PropTypes.string,
-  notes: PropTypes.string
+  state: PropTypes.array
 };
 export default ApplicationItemDetails;

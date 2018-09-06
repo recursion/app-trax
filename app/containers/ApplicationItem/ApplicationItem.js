@@ -26,20 +26,29 @@ export default class ApplicationItem extends React.PureComponent {
   }
 
   render() {
+    const {
+      company,
+      state
+    } = this.props.app;
+    const { status } = state[0];
     return (
       <li className="application-item">
         <div>
-          <button onClick={this.toggleExpand}>
-            <span className="subtitle">{this.props.company}</span>
+          <button className="is-size-5" onClick={this.toggleExpand}>
+            {(this.state.expanded) ? '-' : '+'}
           </button>
-          <button className={'application-item__status is-pulled-right is-size-7'}>
-            <span className={`${getColor(this.props.status)}`}>
-              {this.props.status}
+          <span className="subtitle">{company}</span>
+          <button
+            className={'application-item__status is-pulled-right is-size-7'}
+            onClick={() => this.props.update(this.props.app)}
+          >
+            <span className={`${getColor(status)}`}>
+              {status}
             </span>
           </button>
         </div>
         <div className="application-item_controls container">
-          {(this.state.expanded) ? <ApplicationItemDetails {...this.props} /> : ''}
+          {(this.state.expanded) ? <ApplicationItemDetails {...this.props.app} /> : ''}
         </div>
       </li>
     );
@@ -47,6 +56,6 @@ export default class ApplicationItem extends React.PureComponent {
 }
 
 ApplicationItem.propTypes = {
-  company: PropTypes.string,
-  status: PropTypes.string,
+  app: PropTypes.object,
+  update: PropTypes.func
 };
