@@ -12,7 +12,7 @@
 
 import { fromJS } from 'immutable';
 
-import { ADD_APPLICATION } from './constants';
+import { ADD_APPLICATION, UPDATE_APPLICATION } from './constants';
 
 // load applications state from localStorage
 export const loadState = () => {
@@ -32,12 +32,22 @@ const initialState = fromJS({
   applications: loadState() || []
 });
 
+const updateApplication = (applications, updatedApp) => applications.map((app) => {
+  if (app.createdAt === updatedApp.createdAt) {
+    return updatedApp;
+  }
+  return app;
+});
+
 function appReducer(state = initialState, action) {
   switch (action.type) {
+    case UPDATE_APPLICATION:
+      return state
+        .set('applications', fromJS(updateApplication(state.get('applications').toJS(), action.application)));
     case ADD_APPLICATION:
       return state
-        .set('applications', state.get('applications')
-          .push(Object.assign({}, { createdAt: Date.now() }, action.application)));
+        .set('applications', fromJS(state.get('applications')
+          .push(Object.assign({}, { createdAt: Date.now() }, action.application))));
     default:
       return state;
   }

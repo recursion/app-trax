@@ -1,4 +1,4 @@
-import { ADD_APPLICATION } from './constants';
+import { ADD_APPLICATION, UPDATE_APPLICATION } from './constants';
 
 /*
  * App Actions
@@ -21,6 +21,13 @@ import { ADD_APPLICATION } from './constants';
 export function addApplication(application) {
   return {
     type: ADD_APPLICATION,
+    application
+  };
+}
+
+export function updateApplication(application) {
+  return {
+    type: UPDATE_APPLICATION,
     application
   };
 }
