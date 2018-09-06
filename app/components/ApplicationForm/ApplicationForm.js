@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './style.scss';
+import statusOptions from '../../statusOptions';
 
-export default class NewApplicationForm extends React.PureComponent {
+export default class ApplicationForm extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,6 +25,7 @@ export default class NewApplicationForm extends React.PureComponent {
   render() {
     return (
       <div className="new-app-form section">
+        <h1 className="subtitle has-text-centered">Create New</h1>
         <div className="field is-horizontal">
           <div className="field-label is-normal">
             <label className="label" htmlFor="company">Company</label>
@@ -94,16 +97,7 @@ export default class NewApplicationForm extends React.PureComponent {
                     value={this.state.status}
                     onChange={(e) => this.handleChangeField('status', e.target.value)}
                   >
-                    <option>Applied</option>
-                    <option>Considering</option>
-                    <option>No Reply</option>
-                    <option>Interviewing</option>
-                    <option>Take Home Project</option>
-                    <option>Rejected</option>
-                    <option>Offer Made</option>
-                    <option>Offer Accepted</option>
-                    <option>Negotiating Offer</option>
-                    <option>Offer Declined</option>
+                    {statusOptions.map((o) => <option key={o}>{o}</option>)}
                   </select>
                 </div>
               </div>
@@ -111,7 +105,7 @@ export default class NewApplicationForm extends React.PureComponent {
           </div>
         </div>
 
-        <div className="field is-grouped">
+        <div className="field is-grouped is-grouped-centered">
           <div className="control">
             <button
               className="button is-primary"
@@ -119,13 +113,17 @@ export default class NewApplicationForm extends React.PureComponent {
                 this.props.onSubmit({
                   company: this.state.company,
                   contact: this.state.contact,
-                  notes: this.state.notes,
-                  status: this.state.status
+                  state: [
+                    {
+                      notes: this.state.notes,
+                      status: this.state.status
+                    }
+                  ]
                 });
                 this.props.onCancel();
               }}
             >
-              Submit
+              Create
             </button>
           </div>
           <div className="control">
@@ -137,7 +135,7 @@ export default class NewApplicationForm extends React.PureComponent {
   }
 }
 
-NewApplicationForm.propTypes = {
+ApplicationForm.propTypes = {
   onSubmit: PropTypes.func,
   onCancel: PropTypes.func,
   company: PropTypes.string,
