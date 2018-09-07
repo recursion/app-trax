@@ -5,18 +5,18 @@ import ApplicationManager from '../ApplicationManager';
 describe('ApplicationManager', () => {
   it('should render a create button', () => {
     const page = shallow(<ApplicationManager />);
-    expect(page.find('.btn-new').length).toEqual(1);
+    expect(page.find('.application-manager__button-create-new').length).toEqual(1);
   });
   it('should open a create form when creation button clicked', () => {
     const page = mount(<ApplicationManager />);
-    page.find('.btn-new').simulate('click');
+    page.find('.application-manager__button-create-new').simulate('click');
     expect(page.find('.new-app-form').length).toEqual(1);
   });
   it('should close a create form when already open and creation button clicked', () => {
     const page = mount(<ApplicationManager />);
-    page.find('.btn-new').simulate('click');
+    page.find('.application-manager__button-create-new').simulate('click');
     expect(page.find('.new-app-form').length).toEqual(1);
-    page.find('.btn-new').simulate('click');
+    page.find('.application-manager__button-create-new').simulate('click');
     expect(page.find('.new-app-form').length).toEqual(0);
   });
   it('should not render an applications list when no applications exist', () => {

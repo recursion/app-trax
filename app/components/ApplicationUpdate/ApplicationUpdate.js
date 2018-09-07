@@ -86,7 +86,7 @@ export default class ApplicationUpdate extends React.PureComponent {
               <div className="control">
                 <button
                   className="button is-text"
-                  onClick={this.props.cancelUpdate}
+                  onClick={this.props.update}
                 >
                   Cancel
                 </button>
@@ -95,7 +95,7 @@ export default class ApplicationUpdate extends React.PureComponent {
           </div>
         </div>
         <button
-          onClick={this.props.cancelUpdate}
+          onClick={this.props.update}
           className="modal-close is-large"
           aria-label="close"
         >
@@ -107,6 +107,5 @@ export default class ApplicationUpdate extends React.PureComponent {
 
 ApplicationUpdate.propTypes = {
   item: PropTypes.object,
-  cancelUpdate: PropTypes.func,
   update: PropTypes.func
 };

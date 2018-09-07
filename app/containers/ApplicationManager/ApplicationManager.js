@@ -14,19 +14,19 @@ export default class ApplicationManager extends React.PureComponent {
       item: null
     };
     this.toggleShowApplicationForm = this.toggleShowApplicationForm.bind(this);
-    this.updateItem = this.updateItem.bind(this);
-    this.updateItemComplete = this.updateItemComplete.bind(this);
+    this.startUpdateItem = this.startUpdateItem.bind(this);
+    this.finishUpdateItem = this.finishUpdateItem.bind(this);
   }
 
   toggleShowApplicationForm() {
     this.setState((state) => ({ showApplicationForm: !state.showApplicationForm }));
   }
 
-  updateItem(item) {
+  startUpdateItem(item) {
     this.setState(() => ({ showUpdateForm: true, item }));
   }
 
-  updateItemComplete(item = null) {
+  finishUpdateItem(item = null) {
     // if an item was returned, we need to update it's data
     if (item) this.props.updateApplication(item);
     this.setState(() => ({ showUpdateForm: false, item: null }));
@@ -38,7 +38,7 @@ export default class ApplicationManager extends React.PureComponent {
         <div className="application-manager__header">
           <h1 className="title is-inline is-size-4">App-Trax</h1>
           <button
-            className="btn-new button is-info is-small is-inline is-pulled-right"
+            className="application-manager__button-create-new -button button is-info is-small is-inline is-pulled-right"
             onClick={this.toggleShowApplicationForm}
           >
             {(this.state.showApplicationForm) ? 'x' : '+'}
@@ -54,8 +54,7 @@ export default class ApplicationManager extends React.PureComponent {
         }
         {(this.state.showUpdateForm) ?
           <ApplicationUpdate
-            cancelUpdate={this.updateItemComplete}
-            update={this.updateItemComplete}
+            update={this.finishUpdateItem}
             item={this.state.item}
           /> :
           ''
@@ -63,7 +62,7 @@ export default class ApplicationManager extends React.PureComponent {
         {(!this.state.showApplicationForm && this.props.applications && this.props.applications.length > 0) ?
           <ApplicationsList
             apps={this.props.applications}
-            updateItem={this.updateItem}
+            updateItem={this.startUpdateItem}
           /> :
           ''
         }
