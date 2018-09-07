@@ -39,6 +39,10 @@ export default class ApplicationItem extends React.PureComponent {
             {(this.state.expanded) ? '-' : '+'}
           </button>
           <span className="subtitle has-text-white">{company}</span>
+          {(this.state.expanded) ?
+            <span className="application-item__controls">
+              <button>-</button>
+            </span> : ''}
           <button
             className={'application-item__status is-pulled-right is-size-7'}
             onClick={() => this.props.update(this.props.app)}
