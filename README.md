@@ -5,14 +5,14 @@ A simple job application status tracker. This application runs locally (for now)
 Starter project cloned from the boilerplate: https://github.com/flexdinesh/react-redux-boilerplate 
 
 ## Features
-[x] Create new applications
-[x] Update application status
-[ ] Edit application records
-[ ] Delete application
-[ ] View application history
-[ ] Show statistics on applications
-[ ] Sort by status
-[ ] Update record to 'no-reply' after X time period.
+- [x] Create new applications
+- [x] Update application status
+- [ ] Edit application records
+- [ ] Delete application
+- [ ] View application history
+- [ ] Show statistics on applications
+- [ ] Sort by status
+- [ ] Update record to 'no-reply' after X time period.
 
 ## License
 
