@@ -2,7 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import ApplicationUpdate from '../ApplicationUpdate';
 
-describe('ApplicationItem', () => {
+describe('ApplicationUpdate', () => {
   it('renders the current status', () => {
     const item = {
       name: 'Test',
