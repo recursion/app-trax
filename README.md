@@ -1,4 +1,4 @@
-## Project Title
+## App-Trax
 
 Starter project cloned from the boilerplate: https://github.com/flexdinesh/react-redux-boilerplate 
 

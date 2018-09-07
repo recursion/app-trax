@@ -35,7 +35,7 @@ export default class ApplicationManager extends React.PureComponent {
   render() {
     return (
       <article className="application-manager">
-        <h1 className="title is-inline is-size-4">Applications</h1>
+        <h1 className="title is-inline is-size-4">App-Trax</h1>
         <button
           className="btn-new button is-info is-small is-inline is-pulled-right"
           onClick={this.toggleShowApplicationForm}
