@@ -30,10 +30,7 @@ export default class ApplicationItem extends React.PureComponent {
   }
 
   render() {
-    const {
-      company,
-      state
-    } = this.props.app;
+    const { company, state } = this.props.app;
     const { status } = state[0];
     return (
       <li className="application-item has-text-white has-background-dark">
@@ -51,9 +48,7 @@ export default class ApplicationItem extends React.PureComponent {
             </span>
           </button>
         </div>
-        <div className="application-item_controls container">
-          {(this.state.expanded) ? <ApplicationItemDetails {...this.props.app} /> : ''}
-        </div>
+        {(this.state.expanded) ? <ApplicationItemDetails {...this.props.app} /> : ''}
       </li>
     );
   }
