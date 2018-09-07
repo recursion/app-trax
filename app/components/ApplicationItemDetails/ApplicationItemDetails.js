@@ -8,9 +8,9 @@ const ApplicationItemDetails = (props) => (
       <p>{props.state[0].notes}</p>
     </div>
     {(props.contact) ?
-      <div className="is-pulled-left">
-        <label className="is-size-7">Contact:</label>
-        <span className="is-size-6">{props.contact}</span>
+      <div className="application-details-contact is-pulled-left">
+        <label className="application-details-contact-label is-size-7">Contact:</label>
+        <span className="application-details-contact-value is-size-7">{props.contact}</span>
       </div> :
       ''
     }

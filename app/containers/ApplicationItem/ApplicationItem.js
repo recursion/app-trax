@@ -6,9 +6,13 @@ import './style.scss';
 const getColor = (status) => {
   switch (status) {
     case 'Considering':
-      return 'has-text-link';
-    default:
+      return 'has-text-warning';
+    case 'Rejected':
+    case 'Offer Declined':
+    case 'No Reply':
       return 'has-text-danger';
+    default:
+      return 'has-text-success';
   }
 };
 
@@ -32,12 +36,12 @@ export default class ApplicationItem extends React.PureComponent {
     } = this.props.app;
     const { status } = state[0];
     return (
-      <li className="application-item">
+      <li className="application-item has-text-white has-background-dark">
         <div>
           <button className="is-size-5" onClick={this.toggleExpand}>
             {(this.state.expanded) ? '-' : '+'}
           </button>
-          <span className="subtitle">{company}</span>
+          <span className="subtitle has-text-white">{company}</span>
           <button
             className={'application-item__status is-pulled-right is-size-7'}
             onClick={() => this.props.update(this.props.app)}

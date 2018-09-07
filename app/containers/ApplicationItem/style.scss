@@ -1,17 +1,18 @@
+$border-color: white;
 .application-item:first-of-type {
-  border-top: 1px solid black;
+  border-top: 1psolid $border-color;
 }
 .application-item {
-  border-bottom: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
+  border-bottom: 1px solid $border-color;
+  border-left: 1px solid $border-color;
+  border-right: 1px solid $border-color;
   padding: 2px;
 
   &__status {
     padding: 1px;
   }
   &__controls {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $border-color;
   }
 }
 

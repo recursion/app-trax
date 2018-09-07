@@ -72,7 +72,8 @@ export default class ApplicationUpdate extends React.PureComponent {
                   onClick={() => {
                     this.props.item.state.unshift({
                       notes: this.state.notes,
-                      status: this.state.status
+                      status: this.state.status,
+                      updated: Date.now()
                     });
                     this.props.update(Object.assign({}, this.props.item, {
                       state: this.props.item.state
