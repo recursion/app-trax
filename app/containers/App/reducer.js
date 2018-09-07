@@ -13,25 +13,20 @@
 import { fromJS } from 'immutable';
 
 import { ADD_APPLICATION, UPDATE_APPLICATION } from './constants';
-
-// load applications state from localStorage
-export const loadState = () => {
-  try {
-    const serializedState = localStorage.getItem('applications');
-    if (serializedState === null) {
-      return undefined;
-    }
-    return JSON.parse(serializedState);
-  } catch (err) {
-    return undefined;
-  }
-};
+import { loadState } from '../../localStorage';
 
 // The initial state of the App
 const initialState = fromJS({
   applications: loadState() || []
 });
 
+/**
+ * updateApplication updates an application record in an array of applications
+ *
+ * @param {array<application>} applications
+ * @param {object<application>} updatedApp
+ * @returns {array<applications>}
+ */
 const updateApplication = (applications, updatedApp) => applications.map((app) => {
   if (app.createdAt === updatedApp.createdAt) {
     return updatedApp;
