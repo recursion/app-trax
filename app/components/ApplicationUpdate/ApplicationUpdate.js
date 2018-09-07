@@ -20,7 +20,7 @@ export default class ApplicationUpdate extends React.PureComponent {
 
   render() {
     return (
-      <div className="modal is-active">
+      <div className="application-update-form modal is-active">
         <div className="modal-background"></div>
         <div className="modal-content">
           <div className="update-app-form box">
@@ -35,6 +35,7 @@ export default class ApplicationUpdate extends React.PureComponent {
                   <div className="control">
                     <div className="select is-fullwidth">
                       <select
+                        id="application-update-form__status"
                         value={this.state.status}
                         onChange={(e) => this.handleChangeField('status', e.target.value)}
                       >
@@ -68,7 +69,7 @@ export default class ApplicationUpdate extends React.PureComponent {
             <div className="field is-grouped is-grouped-centered">
               <div className="control">
                 <button
-                  className="button is-primary"
+                  className="application-update-form__button-submit button is-primary"
                   onClick={() => {
                     this.props.item.state.unshift({
                       notes: this.state.notes,
@@ -85,7 +86,7 @@ export default class ApplicationUpdate extends React.PureComponent {
               </div>
               <div className="control">
                 <button
-                  className="button is-text"
+                  className="application-update-form__button-cancel button is-text"
                   onClick={this.props.update}
                 >
                   Cancel
@@ -96,7 +97,7 @@ export default class ApplicationUpdate extends React.PureComponent {
         </div>
         <button
           onClick={this.props.update}
-          className="modal-close is-large"
+          className="application-update-form__button-close modal-close is-large"
           aria-label="close"
         >
         </button>
