@@ -38,7 +38,7 @@ export default class ApplicationItem extends React.PureComponent {
     return (
       <li className="application-item has-text-white has-background-dark">
         <div>
-          <button className="is-size-5" onClick={this.toggleExpand}>
+          <button className="application-item__expand-button is-size-5" onClick={this.toggleExpand}>
             {(this.state.expanded) ? '-' : '+'}
           </button>
           <span className="subtitle has-text-white">{company}</span>
