@@ -44,7 +44,8 @@ export default class ApplicationItem extends React.PureComponent {
           <span className="application-item__name subtitle has-text-white">{company}</span>
           {(this.state.expanded) ?
             <span className="application-item__controls">
-              <button>-</button>
+              <button>E</button>
+              <button>H</button>
             </span> : ''}
           <button
             className={'application-item__status is-pulled-right is-size-7'}
