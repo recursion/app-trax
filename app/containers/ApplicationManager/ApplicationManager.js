@@ -35,13 +35,15 @@ export default class ApplicationManager extends React.PureComponent {
   render() {
     return (
       <article className="application-manager">
-        <h1 className="title is-inline is-size-4">App-Trax</h1>
-        <button
-          className="btn-new button is-info is-small is-inline is-pulled-right"
-          onClick={this.toggleShowApplicationForm}
-        >
-          {(this.state.showApplicationForm) ? 'x' : '+'}
-        </button>
+        <div className="application-manager__header">
+          <h1 className="title is-inline is-size-4">App-Trax</h1>
+          <button
+            className="btn-new button is-info is-small is-inline is-pulled-right"
+            onClick={this.toggleShowApplicationForm}
+          >
+            {(this.state.showApplicationForm) ? 'x' : '+'}
+          </button>
+        </div>
         {(this.state.showApplicationForm) ?
           <ApplicationForm
             onSubmit={this.props.addApplication}
