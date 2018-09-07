@@ -29,7 +29,7 @@ export default class ApplicationManager extends React.PureComponent {
   updateItemComplete(item = null) {
     // if an item was returned, we need to update it's data
     if (item) this.props.updateApplication(item);
-    this.setState(() => ({ showUpdateForm: false, item }));
+    this.setState(() => ({ showUpdateForm: false, item: null }));
   }
 
   render() {
