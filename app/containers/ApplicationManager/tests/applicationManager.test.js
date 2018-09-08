@@ -41,6 +41,19 @@ describe('ApplicationManager', () => {
     expect(page.find('.applications-list').length).toEqual(1);
   });
   describe('Editing', () => {
+    it('should set item to null when cancel/close is clicked', () => {
+      const item = {
+        company: 'Test',
+        contact: 'testee@testers.com',
+        state: [{ status: 'Considering', notes: '' }]
+      };
+      const wrapper = shallow(<ApplicationManager />);
+      wrapper.instance().startEditItem(item);
+      expect(wrapper.state('item')).toEqual(item);
+      wrapper.find('.application-manager__button-create-new').simulate('click');
+      expect(wrapper.state('item')).toEqual(null);
+    });
+
     describe('::startEditItem', () => {
       it('should initiate an edit action', () => {
         const item = {
@@ -71,7 +84,7 @@ describe('ApplicationManager', () => {
         expect(deleteItem).toBeCalledWith(item);
       });
 
-      it('should set showApplicationForm to false and item to null', () => {
+      it('should set showApplicationForm to false, item to null, and editing to false', () => {
         const deleteItem = jest.fn();
         const updateApplication = jest.fn();
         const item = {
@@ -84,6 +97,7 @@ describe('ApplicationManager', () => {
         wrapper.instance().delete();
         expect(wrapper.state('showApplicationForm')).toEqual(false);
         expect(wrapper.state('item')).toEqual(null);
+        expect(wrapper.state('editing')).toEqual(false);
       });
     });
 

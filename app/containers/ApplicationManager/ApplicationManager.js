@@ -23,7 +23,7 @@ export default class ApplicationManager extends React.PureComponent {
   }
 
   toggleShowApplicationForm() {
-    this.setState((state) => ({ showApplicationForm: !state.showApplicationForm }));
+    this.setState((state) => ({ showApplicationForm: !state.showApplicationForm, item: null }));
   }
 
   startEditItem(item) {
@@ -49,7 +49,7 @@ export default class ApplicationManager extends React.PureComponent {
 
   delete() {
     this.props.deleteApplication(this.state.item);
-    this.setState(() => ({ item: null, showApplicationForm: false }));
+    this.setState(() => ({ item: null, showApplicationForm: false, editing: false }));
   }
 
   finishUpdateItem(item = null) {
