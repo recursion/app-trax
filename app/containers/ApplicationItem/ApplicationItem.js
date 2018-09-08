@@ -44,7 +44,7 @@ export default class ApplicationItem extends React.PureComponent {
           <span className="application-item__name subtitle has-text-white">{company}</span>
           {(this.state.expanded) ?
             <span className="application-item__controls">
-              <button>E</button>
+              <button onClick={() => this.props.edit(this.props.app)}>E</button>
               <button>H</button>
             </span> : ''}
           <button
@@ -64,5 +64,6 @@ export default class ApplicationItem extends React.PureComponent {
 
 ApplicationItem.propTypes = {
   app: PropTypes.object,
-  update: PropTypes.func
+  update: PropTypes.func,
+  edit: PropTypes.func
 };
