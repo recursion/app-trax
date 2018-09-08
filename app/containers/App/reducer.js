@@ -12,7 +12,7 @@
 
 import { fromJS } from 'immutable';
 
-import { ADD_APPLICATION, UPDATE_APPLICATION } from './constants';
+import { DELETE_APPLICATION, ADD_APPLICATION, UPDATE_APPLICATION } from './constants';
 import { loadState } from '../../localStorage';
 
 // The initial state of the App
@@ -34,6 +34,19 @@ const updateApplication = (applications, updatedApp) => applications.map((app) =
   return app;
 });
 
+/**
+ * Returns a new array of applications minus the application matching the application argument
+ * @param {array<application>}} applications
+ * @param {object<application>} application
+ * @returns {array<application>}
+ */
+const deleteApplication = (applications, application) => applications.filter((app) => {
+  if (app.createdAt === application.createdAt) {
+    return false;
+  }
+  return true;
+});
+
 function appReducer(state = initialState, action) {
   switch (action.type) {
     case UPDATE_APPLICATION:
@@ -43,6 +56,9 @@ function appReducer(state = initialState, action) {
       return state
         .set('applications', fromJS(state.get('applications')
           .push(Object.assign({}, { createdAt: Date.now() }, action.application))));
+    case DELETE_APPLICATION:
+      return state
+        .set('applications', fromJS(deleteApplication(state.get('applications').toJS(), action.application)));
     default:
       return state;
   }

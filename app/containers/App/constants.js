@@ -10,3 +10,4 @@
  */
 export const ADD_APPLICATION = 'jtracker/app/ADD_APPLICATION';
 export const UPDATE_APPLICATION = 'jtracker/app/UPDATE_APPLICATION';
+export const DELETE_APPLICATION = 'jtracker/app/DELETE_APPLICATION';

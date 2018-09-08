@@ -83,7 +83,7 @@ export default class ApplicationManager extends React.PureComponent {
           <ApplicationForm
             onSubmit={(this.state.editing) ? this.edit : this.props.addApplication}
             onCancel={this.toggleShowApplicationForm}
-            onDelete={this.deleteItem}
+            onDelete={this.delete}
             {...item}
           /> :
           ''

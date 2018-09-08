@@ -1,6 +1,5 @@
-import { ADD_APPLICATION, UPDATE_APPLICATION } from '../constants';
-
-import { addApplication, updateApplication } from '../actions';
+import { DELETE_APPLICATION, ADD_APPLICATION, UPDATE_APPLICATION } from '../constants';
+import { deleteApplication, addApplication, updateApplication } from '../actions';
 
 describe('App Actions', () => {
   describe('addApplication', () => {
@@ -24,6 +23,18 @@ describe('App Actions', () => {
       };
 
       expect(updateApplication(fixture)).toEqual(expectedResult);
+    });
+  });
+
+  describe('deleteApplication', () => {
+    it('should return the correct type', () => {
+      const fixture = { company: 'TestCompany' };
+      const expectedResult = {
+        type: DELETE_APPLICATION,
+        application: fixture
+      };
+
+      expect(deleteApplication(fixture)).toEqual(expectedResult);
     });
   });
 });
