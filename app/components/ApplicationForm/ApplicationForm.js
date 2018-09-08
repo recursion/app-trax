@@ -128,6 +128,7 @@ export default class ApplicationForm extends React.PureComponent {
                 <div className="control">
                   <div className="select is-fullwidth">
                     <select
+                      id="status"
                       value={this.state.status}
                       onChange={(e) => this.handleChangeField('status', e.target.value)}
                     >
@@ -145,7 +146,7 @@ export default class ApplicationForm extends React.PureComponent {
                 className="application-form__submit-button button is-primary"
                 onClick={this.handleSubmit}
               >
-                Create
+                {(!this.props.company) ? 'Create' : 'Edit'}
               </button>
             </div>
             <div className="control">
