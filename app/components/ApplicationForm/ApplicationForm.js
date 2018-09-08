@@ -11,20 +11,48 @@ export default class ApplicationForm extends React.PureComponent {
       company: props.company || '',
       contact: props.contact || '',
       notes: props.notes || '',
-      status: props.status || 'Considering'
+      status: props.status || 'Considering',
+      companyHelpMsg: false
     };
     this.handleChangeField = this.handleChangeField.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChangeField(key, value) {
+    // reset help message when updating company with non-blank value
+    if (key === 'company' && this.state.companyHelpMsg && value !== '') {
+      this.setState(() => ({
+        companyHelpMsg: ''
+      }));
+    }
+
     this.setState(() => ({
       [key]: value
     }));
   }
 
+  handleSubmit() {
+    if (this.state.company === '') {
+      this.setState(() => ({ companyHelpMsg: true }));
+    } else {
+      this.props.onSubmit({
+        company: this.state.company,
+        contact: this.state.contact,
+        state: [
+          {
+            notes: this.state.notes,
+            status: this.state.status,
+            updated: Date.now()
+          }
+        ]
+      });
+      this.props.onCancel();
+    }
+  }
+
   render() {
     return (
-      <div className="new-app-form section">
+      <div className="application-form section">
         <h1 className="subtitle has-text-centered">Create New</h1>
         <div className="field is-horizontal">
           <div className="field-label is-normal">
@@ -35,13 +63,18 @@ export default class ApplicationForm extends React.PureComponent {
               <div className="control">
                 <input
                   id="company"
-                  className="input"
+                  className={`input ${(this.state.companyHelpMsg) ? 'is-danger' : ''}`}
                   type="text"
                   value={this.state.company}
                   placeholder="e.g. Apple inc"
                   onChange={(e) => this.handleChangeField('company', e.target.value)}
                 />
               </div>
+              {(this.state.companyHelpMsg) ?
+                <p className="application-form__company-help-msg help is-danger">
+                  Must not be empty
+                </p> : ''
+              }
             </div>
           </div>
         </div>
@@ -108,26 +141,19 @@ export default class ApplicationForm extends React.PureComponent {
         <div className="field is-grouped is-grouped-centered">
           <div className="control">
             <button
-              className="button is-primary"
-              onClick={() => {
-                this.props.onSubmit({
-                  company: this.state.company,
-                  contact: this.state.contact,
-                  state: [
-                    {
-                      notes: this.state.notes,
-                      status: this.state.status
-                    }
-                  ]
-                });
-                this.props.onCancel();
-              }}
+              className="application-form__submit-button button is-primary"
+              onClick={this.handleSubmit}
             >
               Create
             </button>
           </div>
           <div className="control">
-            <button className="button is-text" onClick={this.props.onCancel}>Cancel</button>
+            <button
+              className="application-form__cancel-button button is-text"
+              onClick={this.props.onCancel}
+            >
+              Cancel
+            </button>
           </div>
         </div>
       </div>
