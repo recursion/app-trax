@@ -19,6 +19,7 @@ export default class ApplicationManager extends React.PureComponent {
     this.finishUpdateItem = this.finishUpdateItem.bind(this);
     this.startEditItem = this.startEditItem.bind(this);
     this.edit = this.edit.bind(this);
+    this.delete = this.delete.bind(this);
   }
 
   toggleShowApplicationForm() {
@@ -44,6 +45,11 @@ export default class ApplicationManager extends React.PureComponent {
     });
     this.props.updateApplication(nextItem);
     this.setState(() => ({ editing: false, item: null }));
+  }
+
+  delete() {
+    this.props.deleteApplication(this.state.item);
+    this.setState(() => ({ item: null, showApplicationForm: false }));
   }
 
   finishUpdateItem(item = null) {
@@ -77,6 +83,7 @@ export default class ApplicationManager extends React.PureComponent {
           <ApplicationForm
             onSubmit={(this.state.editing) ? this.edit : this.props.addApplication}
             onCancel={this.toggleShowApplicationForm}
+            onDelete={this.deleteItem}
             {...item}
           /> :
           ''

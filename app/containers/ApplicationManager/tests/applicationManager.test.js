@@ -55,6 +55,38 @@ describe('ApplicationManager', () => {
         expect(wrapper.state('item')).toEqual(item);
       });
     });
+
+    describe('delete', () => {
+      it('should call props.deleteItem with the item in state', () => {
+        const deleteItem = jest.fn();
+        const updateApplication = jest.fn();
+        const item = {
+          company: 'Test',
+          contact: 'testee@testers.com',
+          state: [{ status: 'Rejected', notes: 'bummer' }, { status: 'Applied', notes: '' }]
+        };
+        const wrapper = shallow(<ApplicationManager deleteApplication={deleteItem} updateApplication={updateApplication} />);
+        wrapper.instance().startEditItem(item);
+        wrapper.instance().delete();
+        expect(deleteItem).toBeCalledWith(item);
+      });
+
+      it('should set showApplicationForm to false and item to null', () => {
+        const deleteItem = jest.fn();
+        const updateApplication = jest.fn();
+        const item = {
+          company: 'Test',
+          contact: 'testee@testers.com',
+          state: [{ status: 'Rejected', notes: 'bummer' }, { status: 'Applied', notes: '' }]
+        };
+        const wrapper = shallow(<ApplicationManager deleteApplication={deleteItem} updateApplication={updateApplication} />);
+        wrapper.instance().startEditItem(item);
+        wrapper.instance().delete();
+        expect(wrapper.state('showApplicationForm')).toEqual(false);
+        expect(wrapper.state('item')).toEqual(null);
+      });
+    });
+
     describe('::edit', () => {
       it('should update an edited record, set editing to false, and item to null', () => {
         const updateApplication = jest.fn();
@@ -78,7 +110,6 @@ describe('ApplicationManager', () => {
         wrapper.instance().edit(editedRecord);
         expect(wrapper.state('editing')).toEqual(false);
         expect(wrapper.state('item')).toEqual(null);
-        expect(updateApplication).toBeCalled();
         expect(updateApplication).toBeCalledWith(expectedRecord);
       });
     });
