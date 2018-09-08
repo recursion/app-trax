@@ -92,6 +92,58 @@ describe('ApplicationForm', () => {
     });
   });
   describe('Edit existing', () => {
+    it('renders a delete button if a company name was passed in', () => {
+      const onSubmit = jest.fn();
+      const item = {
+        company: 'Test',
+        contact: 'Tester@testing.com',
+        state: [
+          {
+            status: 'Considering',
+            notes: 'Hopeful on this one!',
+            updated: Date.now()
+          }
+        ]
+      };
+
+      const props = {
+        company: item.company,
+        contact: item.contact,
+        status: item.state[0].status,
+        notes: item.state[0].notes
+      };
+
+      const wrapper = mount(<ApplicationForm onDelete={() => {}} onSubmit={onSubmit} onCancel={() => {}} {...props} />);
+      expect(wrapper.find('.application-form__delete-button').length).toEqual(1);
+    });
+
+    it('calls the onDelete function when the delete button is clicked', () => {
+      const onSubmit = jest.fn();
+      const onDelete = jest.fn();
+      const item = {
+        company: 'Test',
+        contact: 'Tester@testing.com',
+        state: [
+          {
+            status: 'Considering',
+            notes: 'Hopeful on this one!',
+            updated: Date.now()
+          }
+        ]
+      };
+
+      const props = {
+        company: item.company,
+        contact: item.contact,
+        status: item.state[0].status,
+        notes: item.state[0].notes
+      };
+
+      const wrapper = mount(<ApplicationForm onDelete={onDelete} onSubmit={onSubmit} onCancel={() => {}} {...props} />);
+      wrapper.find('.application-form__delete-button').simulate('click');
+      expect(onDelete).toBeCalled();
+    });
+
     it('renders an edit button if a company name was passed in', () => {
       const onSubmit = jest.fn();
       const item = {

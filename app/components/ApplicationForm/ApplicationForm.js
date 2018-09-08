@@ -158,6 +158,19 @@ export default class ApplicationForm extends React.PureComponent {
               </button>
             </div>
           </div>
+
+          {(this.props.company) ?
+            <div className="field is-grouped is-grouped-centered">
+              <div className="control">
+                <button
+                  className="application-form__delete-button button is-danger"
+                  onClick={this.props.onDelete}
+                >
+                  Delete
+                </button>
+              </div>
+            </div> : ''
+          }
         </div>
       </section>
     );
@@ -167,6 +180,7 @@ export default class ApplicationForm extends React.PureComponent {
 ApplicationForm.propTypes = {
   onSubmit: PropTypes.func,
   onCancel: PropTypes.func,
+  onDelete: PropTypes.func,
   company: PropTypes.string,
   contact: PropTypes.string,
   notes: PropTypes.string,
