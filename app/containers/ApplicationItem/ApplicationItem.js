@@ -68,9 +68,9 @@ export default class ApplicationItem extends React.PureComponent {
             className={'application-item__status is-pulled-right is-size-7'}
             onClick={() => this.props.update(this.props.app)}
           >
-            <span className={`${getColor(status)}`}>
+            <span className={` ${getColor(status)}`}>
               {status}
-              <span className="icon is-small">
+              <span className="application-item__status-update-icon icon is-small">
                 <i className="fas fa-sync-alt"></i>
               </span>
             </span>
