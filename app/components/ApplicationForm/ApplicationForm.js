@@ -54,7 +54,7 @@ export default class ApplicationForm extends React.PureComponent {
     return (
       <section className="application-form section">
         <div className="container">
-          <h1 className="subtitle has-text-centered">Create New</h1>
+          <h1 className="application-form__title subtitle has-text-centered">{(this.props.company) ? 'Edit' : 'Create New'}</h1>
           <div className="field is-horizontal">
             <div className="field-label is-normal">
               <label className="label" htmlFor="company">Company</label>
@@ -146,7 +146,7 @@ export default class ApplicationForm extends React.PureComponent {
                 className="application-form__submit-button button is-primary"
                 onClick={this.handleSubmit}
               >
-                {(!this.props.company) ? 'Create' : 'Edit'}
+                Submit
               </button>
             </div>
             <div className="control">
