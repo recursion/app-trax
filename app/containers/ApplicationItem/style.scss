@@ -8,11 +8,21 @@ $border-color: white;
   border-right: 1px solid $border-color;
   padding: 2px;
 
+  &__expand-button {
+    padding: 0;
+    margin-right: 5px;
+  }
+
   &__status {
     padding: 1px;
   }
+
   &__controls {
-    margin-left: 5px;
+    margin-left: 10px;
+    button {
+      padding: 0;
+      margin-right: 4px;
+    }
   }
 }
 

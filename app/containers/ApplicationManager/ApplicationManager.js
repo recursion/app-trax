@@ -76,7 +76,14 @@ export default class ApplicationManager extends React.PureComponent {
             className="application-manager__button-create-new button is-info is-small is-inline is-pulled-right"
             onClick={this.toggleShowApplicationForm}
           >
-            {(this.state.showApplicationForm) ? 'x' : '+'}
+            {(this.state.showApplicationForm) ?
+              <span className="icon">
+                <i className="fas fa-minus"></i>
+              </span> :
+              <span className="icon">
+                <i className="fas fa-plus"></i>
+              </span>
+            }
           </button>
         </div>
         {(this.state.showApplicationForm) ?

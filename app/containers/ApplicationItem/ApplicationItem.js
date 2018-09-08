@@ -39,20 +39,40 @@ export default class ApplicationItem extends React.PureComponent {
             className="application-item__expand-button is-size-5"
             onClick={this.toggleExpand}
           >
-            {(this.state.expanded) ? '-' : '+'}
+            {(this.state.expanded) ?
+              <span className="icon is-size-6">
+                <i className="fas fa-minus"></i>
+              </span> :
+              <span className="icon is-size-6">
+                <i className="fas fa-expand-arrows-alt"></i>
+              </span>
+            }
           </button>
-          <span className="application-item__name subtitle has-text-white">{company}</span>
-          {(this.state.expanded) ?
-            <span className="application-item__controls">
-              <button onClick={() => this.props.edit(this.props.app)}>E</button>
-              <button>H</button>
-            </span> : ''}
+          <span className="application-item__name subtitle has-text-white">
+            {company}
+            {(this.state.expanded) ?
+              <span className="application-item__controls">
+                <button onClick={() => this.props.edit(this.props.app)}>
+                  <span className="icon is-size-6">
+                    <i className="fas fa-edit"></i>
+                  </span>
+                </button>
+                <button>
+                  <span className="icon is-size-6">
+                    <i className="fas fa-history"></i>
+                  </span>
+                </button>
+              </span> : ''}
+          </span>
           <button
             className={'application-item__status is-pulled-right is-size-7'}
             onClick={() => this.props.update(this.props.app)}
           >
             <span className={`${getColor(status)}`}>
               {status}
+              <span className="icon is-small">
+                <i className="fas fa-sync-alt"></i>
+              </span>
             </span>
           </button>
         </div>
