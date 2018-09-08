@@ -32,6 +32,16 @@ export default class ApplicationItem extends React.PureComponent {
   render() {
     const { company, state } = this.props.app;
     const { status } = state[0];
+    const renderHistoryButton = () => (
+      (state.length > 1) ?
+        <button className="application-item__history-button">
+          <span className="icon is-size-6">
+            <i className="fas fa-history"></i>
+          </span>
+        </button> :
+        ''
+    );
+
     return (
       <li className="application-item has-text-white has-background-dark">
         <div className="application-item__status-bar">
@@ -57,12 +67,9 @@ export default class ApplicationItem extends React.PureComponent {
                     <i className="fas fa-edit"></i>
                   </span>
                 </button>
-                <button>
-                  <span className="icon is-size-6">
-                    <i className="fas fa-history"></i>
-                  </span>
-                </button>
-              </span> : ''}
+                {renderHistoryButton()}
+              </span> : ''
+            }
           </span>
           <button
             className={'application-item__status is-pulled-right is-size-7'}
