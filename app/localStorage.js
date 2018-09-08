@@ -1,4 +1,4 @@
-import { ADD_APPLICATION, UPDATE_APPLICATION } from './containers/App/constants';
+import { ADD_APPLICATION, UPDATE_APPLICATION, DELETE_APPLICATION } from './containers/App/constants';
 
 export const saveToLocalStorageMiddleWare = ({ getState }) => (next) =>
   (action) => {
@@ -9,6 +9,7 @@ export const saveToLocalStorageMiddleWare = ({ getState }) => (next) =>
     // const actionType = String(action.type);
     switch (action.type) {
       case ADD_APPLICATION:
+      case DELETE_APPLICATION:
       case UPDATE_APPLICATION:
         window.localStorage.setItem('applications', JSON.stringify(target));
         return returnValue;
