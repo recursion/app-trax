@@ -7,7 +7,8 @@ const ApplicationsList = (props) => (
   <ul className="applications-list">
     {props.apps.map((app) => (<ApplicationItem
       key={app.createdAt}
-      update={props.updateItem}
+      update={props.update}
+      edit={props.edit}
       app={app}
     />))}
   </ul>
@@ -15,7 +16,8 @@ const ApplicationsList = (props) => (
 
 ApplicationsList.propTypes = {
   apps: PropTypes.array,
-  updateItem: PropTypes.func
+  update: PropTypes.func,
+  edit: PropTypes.func
 };
 
 export default ApplicationsList;
