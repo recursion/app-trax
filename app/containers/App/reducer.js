@@ -36,7 +36,7 @@ const updateApplication = (applications, updatedApp) => applications.map((app) =
 
 /**
  * Returns a new array of applications minus the application matching the application argument
- * @param {array<application>}} applications
+ * @param {array<application>} applications
  * @param {object<application>} application
  * @returns {array<application>}
  */
