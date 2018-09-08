@@ -15,13 +15,26 @@ describe('ApplicationForm', () => {
     wrapper.find('.application-form__cancel-button').simulate('click');
     expect(onCancel).toBeCalled();
   });
-  describe('Create New', () => {
-    it('renders a create button if no company name was passed in', () => {
-      const onSubmit = jest.fn();
-      const wrapper = mount(<ApplicationForm onSubmit={onSubmit} onCancel={() => {}} />);
-      expect(wrapper.find('.application-form__submit-button').text()).toEqual('Create');
-    });
 
+  it('renders a submit button', () => {
+    const onSubmit = jest.fn();
+    const wrapper = mount(<ApplicationForm onSubmit={onSubmit} onCancel={() => {}} />);
+    expect(wrapper.find('.application-form__submit-button').text()).toEqual('Submit');
+  });
+
+  it('renders a Create New title when no application props were passed in', () => {
+    const onSubmit = jest.fn();
+    const wrapper = mount(<ApplicationForm onSubmit={onSubmit} onCancel={() => {}} />);
+    expect(wrapper.find('.application-form__title').text()).toEqual('Create New');
+  });
+
+  it('renders an Edit title when application props were passed in', () => {
+    const onSubmit = jest.fn();
+    const wrapper = mount(<ApplicationForm onSubmit={onSubmit} onCancel={() => {}} company={'Test'} />);
+    expect(wrapper.find('.application-form__title').text()).toEqual('Edit');
+  });
+
+  describe('Create New', () => {
     it('it will not submit without a company name', () => {
       const onSubmit = jest.fn();
       const wrapper = mount(<ApplicationForm onSubmit={onSubmit} onCancel={() => {}} />);
@@ -142,31 +155,6 @@ describe('ApplicationForm', () => {
       const wrapper = mount(<ApplicationForm onDelete={onDelete} onSubmit={onSubmit} onCancel={() => {}} {...props} />);
       wrapper.find('.application-form__delete-button').simulate('click');
       expect(onDelete).toBeCalled();
-    });
-
-    it('renders an edit button if a company name was passed in', () => {
-      const onSubmit = jest.fn();
-      const item = {
-        company: 'Test',
-        contact: 'Tester@testing.com',
-        state: [
-          {
-            status: 'Considering',
-            notes: 'Hopeful on this one!',
-            updated: Date.now()
-          }
-        ]
-      };
-
-      const props = {
-        company: item.company,
-        contact: item.contact,
-        status: item.state[0].status,
-        notes: item.state[0].notes
-      };
-
-      const wrapper = mount(<ApplicationForm onSubmit={onSubmit} onCancel={() => {}} {...props} />);
-      expect(wrapper.find('.application-form__submit-button').text()).toEqual('Edit');
     });
 
     it('correctly renders existing company name, contact data, notes, and status when passed in', () => {
