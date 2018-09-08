@@ -7,9 +7,10 @@ Starter project cloned from the boilerplate: https://github.com/flexdinesh/react
 ## Features
 - [x] Create new applications
 - [x] Update application status
-- [ ] Edit application records
-- [ ] Delete application
+- [x] Edit application records
+- [x] Delete application
 - [ ] View application history
+- [ ] Add instructions/help
 - [ ] Show statistics on applications
 - [ ] Sort by status
 - [ ] Update record to 'no-reply' after X time period.
