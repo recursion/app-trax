@@ -16,38 +16,38 @@ const ApplicationStateNode = (state) => (
   </div>
 );
 
-const ApplicationHistory = (props) => (
-  <div className="application-history">
-    <div className="application-history__header">
-      <button
-        className="is-inline is-inverted is-small"
-        onClick={props.close}
-      >
-        <span className="icon">
-          <i className="fas fa-backspace"></i>
-        </span>
-      </button>
-      <h1
-        className="application-history__title subtitle is-inline"
-      >
-        {props.application.company} History
-      </h1>
-      <div className="application-history__contact is-size-7 has-text-white has-text-centered has-background-dark">
-        Contact: {props.application.contact}
+export default class ApplicationHistory extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    const { id } = props.match.params;
+    const app = props.applications.filter((a) => (a.createdAt === parseInt(id, 10)))[0];
+    this.item = app;
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <div className="application-history">
+        <h1
+          className="application-history__title has-text-weight-bold subtitle has-text-centered"
+        >
+          {this.item.company} History
+        </h1>
+        <div className="application-history__contact is-size-7 has-text-white has-text-centered has-background-dark">
+          Contact: {this.item.contact}
+        </div>
+        <div className="application-history__list">
+          {this.item.state.map((state) => (<ApplicationStateNode
+            key={state.updated}
+            {...state}
+          />))}
+        </div>
       </div>
-    </div>
-    <div className="application-history__list">
-      {props.application.state.map((state) => (<ApplicationStateNode
-        key={state.updated}
-        {...state}
-      />))}
-    </div>
-  </div>
-);
+    );
+  }
+}
 
 ApplicationHistory.propTypes = {
   close: PropTypes.func,
   application: PropTypes.object
 };
-
-export default ApplicationHistory;

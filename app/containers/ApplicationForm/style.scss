@@ -1,8 +1,8 @@
 .application-form {
-  padding: 0.25rem 1.25rem;
+  &__title {
+    margin-bottom: 0 !important;
+  }
   .container {
-    .subtitle {
-      margin-bottom: 2px;
-    }
+    padding: 0.25rem 1.25rem;
   }
 }

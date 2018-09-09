@@ -11,16 +11,32 @@ import './style.scss';
 class ApplicationForm extends React.PureComponent {
   constructor(props) {
     super(props);
+
+    try {
+      const { id } = props.match.params;
+      const app = props.applications.filter((a) => (a.createdAt === parseInt(id, 10)))[0];
+      this.item = app || {};
+    } catch (e) {
+      this.item = {};
+    }
+
     this.state = {
-      company: props.company || '',
-      contact: props.contact || '',
-      notes: props.notes || '',
-      status: props.status || 'Applied',
+      company: this.item.company || '',
+      contact: this.item.contact || '',
+      notes: this.item.notes || '',
+      status: this.item.status || 'Applied',
       companyHelpMsg: false
     };
+
     this.handleChangeField = this.handleChangeField.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.close = this.close.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleDelete() {
+    this.props.deleteApplication(this.item);
+    this.close();
   }
 
   handleChangeField(key, value) {
@@ -66,15 +82,14 @@ class ApplicationForm extends React.PureComponent {
 
   render() {
     return (
-      <section className="application-form section">
+      <section className="application-form">
+        <h1 className="application-form__title subtitle has-text-centered">
+          {(this.item.company) ?
+            'Edit' :
+            'Create New'
+          }
+        </h1>
         <div className="container">
-          <h1 className="application-form__title subtitle has-text-centered">
-            {(this.props.company) ?
-              'Edit' :
-              'Create New'
-            }
-          </h1>
-
           <CompanyInput
             handleChangeField={this.handleChangeField}
             company={this.state.company}
@@ -97,10 +112,10 @@ class ApplicationForm extends React.PureComponent {
           />
 
           <FormControlButtons
-            onDelete={this.props.onDelete}
+            onDelete={this.handleDelete}
             onSubmit={this.handleSubmit}
             onCancel={this.close}
-            showDelete={this.props.company !== ''}
+            showDelete={this.item.company !== undefined}
           />
 
         </div>
@@ -111,12 +126,11 @@ class ApplicationForm extends React.PureComponent {
 export default withRouter(ApplicationForm);
 
 ApplicationForm.propTypes = {
+  applications: PropTypes.array,
+  match: PropTypes.object,
+  history: PropTypes.object,
   addApplication: PropTypes.func,
-  updateApplicatoin: PropTypes.func,
-  onCancel: PropTypes.func,
-  onDelete: PropTypes.func,
+  updateApplication: PropTypes.func,
+  deleteApplication: PropTypes.func,
   company: PropTypes.string,
-  contact: PropTypes.string,
-  notes: PropTypes.string,
-  status: PropTypes.string
 };
