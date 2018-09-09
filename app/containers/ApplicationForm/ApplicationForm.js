@@ -6,7 +6,7 @@ import ContactInput from 'components/ContactInput';
 import NotesInput from 'components/NotesInput';
 import StatusInput from 'components/StatusInput';
 import FormControlButtons from 'components/FormControlButtons';
-import { getCurrent } from '../../status.utils';
+import { getCurrent, updateCurrent } from '../../status.utils';
 import './style.scss';
 
 class ApplicationForm extends React.PureComponent {
@@ -65,20 +65,32 @@ class ApplicationForm extends React.PureComponent {
     if (this.state.company === '') {
       this.setState(() => ({ companyHelpMsg: true }));
     } else {
-      const data = {
-        company: this.state.company,
-        contact: this.state.contact,
-        state: [
-          {
-            notes: this.state.notes,
-            status: this.state.status,
-            updated: Date.now()
-          }
-        ]
-      };
-      if (this.props.company) {
+      if (this.item.company) {
+        const nextState = updateCurrent(this.item.state, {
+          notes: this.state.notes,
+          status: this.state.status,
+          updated: Date.now()
+        });
+        const data = {
+          company: this.state.company,
+          contact: this.state.contact,
+          createdAt: this.item.createdAt,
+          state: nextState
+        };
         this.props.updateApplication(data);
       } else {
+        const data = {
+          company: this.state.company,
+          contact: this.state.contact,
+          createdAt: this.item.createdAt,
+          state: [
+            {
+              notes: this.state.notes,
+              status: this.state.status,
+              updated: Date.now()
+            }
+          ]
+        };
         this.props.addApplication(data);
       }
       this.close();
@@ -137,5 +149,4 @@ ApplicationForm.propTypes = {
   addApplication: PropTypes.func,
   updateApplication: PropTypes.func,
   deleteApplication: PropTypes.func,
-  company: PropTypes.string,
 };

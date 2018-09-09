@@ -13,7 +13,10 @@ export const getCurrent = (state) => state[0];
  */
 export const updateCurrent = (stateHistory, updatedState) => stateHistory.map((state, i) => {
   if (i === 0) {
-    return getCurrent(updatedState);
+    if (Array.isArray(updatedState)) {
+      return getCurrent(updatedState);
+    }
+    return updatedState;
   }
   return state;
 });

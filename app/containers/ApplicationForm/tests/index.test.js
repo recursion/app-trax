@@ -221,6 +221,12 @@ describe('ApplicationForm', () => {
       expect(deleteApplication).toBeCalled();
     });
 
+    /*
+    it('does not overwrite an existing state array when updating the current state', () => {
+
+    });
+    */
+
     it('correctly renders existing company name, contact data, notes, and status when passed in', () => {
       const deleteApplication = jest.fn();
       const id = Date.now();
