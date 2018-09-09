@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getCurrent } from '../../status.utils';
 import './style.scss';
 
 const ApplicationItemDetails = (props) => (
   <div className="application-details container is-clearfix">
     <div className="">
-      <p>{props.state[0].notes}</p>
+      <p>{getCurrent(props.state).notes}</p>
     </div>
     {(props.contact) ?
       <div className="application-details-contact is-pulled-left">
@@ -18,7 +19,6 @@ const ApplicationItemDetails = (props) => (
   </div>
 );
 ApplicationItemDetails.propTypes = {
-  notes: PropTypes.string,
   contact: PropTypes.string,
   state: PropTypes.array,
   children: PropTypes.element
