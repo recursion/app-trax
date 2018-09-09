@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ApplicationForm from 'components/ApplicationForm';
+import ApplicationForm from 'containers/ApplicationForm';
 import ApplicationsList from 'components/ApplicationsList';
 import ApplicationUpdate from 'components/ApplicationUpdate';
 import './style.scss';
