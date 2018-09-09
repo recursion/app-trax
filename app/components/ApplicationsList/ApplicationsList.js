@@ -5,12 +5,14 @@ import './style.scss';
 
 const ApplicationsList = (props) => (
   <ul className="applications-list">
-    {props.apps.map((app) => (<ApplicationItem
-      key={app.createdAt}
-      update={props.update}
-      edit={props.edit}
-      app={app}
-    />))}
+    {props.apps.map((app) => (
+      <ApplicationItem
+        key={app.createdAt}
+        update={props.update}
+        edit={props.edit}
+        app={app}
+      />
+    ))}
   </ul>
 );
 
