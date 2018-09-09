@@ -9,9 +9,9 @@ const ApplicationItemDetails = (props) => (
       <p>{getCurrent(props.state).notes}</p>
     </div>
     {(props.contact) ?
-      <div className="application-details-contact is-pulled-left">
-        <label className="application-details-contact-label is-size-7">Contact:</label>
-        <span className="application-details-contact-value is-size-7">{props.contact}</span>
+      <div className="application-details__contact is-pulled-left">
+        <label className="application-details__contact-label is-size-7">Contact:</label>
+        <span className="application-details__contact-value is-size-7">{props.contact}</span>
       </div> :
       ''
     }
@@ -20,7 +20,7 @@ const ApplicationItemDetails = (props) => (
 );
 ApplicationItemDetails.propTypes = {
   contact: PropTypes.string,
-  state: PropTypes.array,
+  state: PropTypes.array.isRequired,
   children: PropTypes.element
 };
 export default ApplicationItemDetails;
