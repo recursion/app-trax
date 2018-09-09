@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import CompanyInput from 'components/CompanyInput';
 import ContactInput from 'components/ContactInput';
@@ -7,7 +8,7 @@ import StatusInput from 'components/StatusInput';
 import FormControlButtons from 'components/FormControlButtons';
 import './style.scss';
 
-export default class ApplicationForm extends React.PureComponent {
+class ApplicationForm extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,13 +20,14 @@ export default class ApplicationForm extends React.PureComponent {
     };
     this.handleChangeField = this.handleChangeField.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.close = this.close.bind(this);
   }
 
   handleChangeField(key, value) {
     // reset help message when updating company with non-blank value
     if (key === 'company' && this.state.companyHelpMsg && value !== '') {
       this.setState(() => ({
-        companyHelpMsg: ''
+        companyHelpMsg: false
       }));
     }
 
@@ -34,11 +36,15 @@ export default class ApplicationForm extends React.PureComponent {
     }));
   }
 
+  close() {
+    this.props.history.push('/');
+  }
+
   handleSubmit() {
     if (this.state.company === '') {
       this.setState(() => ({ companyHelpMsg: true }));
     } else {
-      this.props.onSubmit({
+      const data = {
         company: this.state.company,
         contact: this.state.contact,
         state: [
@@ -48,8 +54,13 @@ export default class ApplicationForm extends React.PureComponent {
             updated: Date.now()
           }
         ]
-      });
-      this.props.onCancel();
+      };
+      if (this.props.company) {
+        this.props.updateApplication(data);
+      } else {
+        this.props.addApplication(data);
+      }
+      this.close();
     }
   }
 
@@ -88,7 +99,7 @@ export default class ApplicationForm extends React.PureComponent {
           <FormControlButtons
             onDelete={this.props.onDelete}
             onSubmit={this.handleSubmit}
-            onCancel={this.props.onCancel}
+            onCancel={this.close}
             showDelete={this.props.company !== ''}
           />
 
@@ -97,9 +108,11 @@ export default class ApplicationForm extends React.PureComponent {
     );
   }
 }
+export default withRouter(ApplicationForm);
 
 ApplicationForm.propTypes = {
-  onSubmit: PropTypes.func,
+  addApplication: PropTypes.func,
+  updateApplicatoin: PropTypes.func,
   onCancel: PropTypes.func,
   onDelete: PropTypes.func,
   company: PropTypes.string,
