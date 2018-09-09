@@ -14,11 +14,13 @@ const ApplicationItemDetails = (props) => (
       </div> :
       ''
     }
+    <span className="is-pulled-right">{props.children}</span>
   </div>
 );
 ApplicationItemDetails.propTypes = {
   notes: PropTypes.string,
   contact: PropTypes.string,
-  state: PropTypes.array
+  state: PropTypes.array,
+  children: PropTypes.element
 };
 export default ApplicationItemDetails;

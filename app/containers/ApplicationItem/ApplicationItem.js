@@ -33,13 +33,6 @@ export default class ApplicationItem extends React.PureComponent {
           />
           <span className="application-item__name subtitle has-text-white">
             {company}
-            {(this.state.expanded) ?
-              <ApplicationItemControls
-                app={this.props.app}
-                edit={this.edit}
-                itemState={state}
-              /> : ''
-            }
           </span>
           <ApplicationStatus
             update={this.props.update}
@@ -47,7 +40,18 @@ export default class ApplicationItem extends React.PureComponent {
             app={this.props.app}
           />
         </div>
-        {(this.state.expanded) ? <ApplicationItemDetails {...this.props.app} /> : ''}
+        {(this.state.expanded) ?
+          <ApplicationItemDetails
+            {...this.props.app}
+          >
+            <ApplicationItemControls
+              app={this.props.app}
+              edit={this.props.edit}
+              itemState={state}
+            />
+          </ApplicationItemDetails> :
+          ''
+        }
       </li>
     );
   }
