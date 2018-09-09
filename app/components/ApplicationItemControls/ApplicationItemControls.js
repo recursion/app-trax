@@ -15,7 +15,7 @@ const ApplicationItemControls = (props) => (
     {
       (props.itemState.length > 1) ?
         <Link
-          className="router-link is-pulled-right is-small"
+          className="application-item__history-button router-link is-pulled-right is-small"
           to={`/applications/history/${props.app.createdAt}`}
         >
           <span className="icon is-size-7">

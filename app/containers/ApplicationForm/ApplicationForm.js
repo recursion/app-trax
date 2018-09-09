@@ -6,6 +6,7 @@ import ContactInput from 'components/ContactInput';
 import NotesInput from 'components/NotesInput';
 import StatusInput from 'components/StatusInput';
 import FormControlButtons from 'components/FormControlButtons';
+import { getCurrent } from '../../status.utils';
 import './style.scss';
 
 class ApplicationForm extends React.PureComponent {
@@ -16,6 +17,10 @@ class ApplicationForm extends React.PureComponent {
       const { id } = props.match.params;
       const app = props.applications.filter((a) => (a.createdAt === parseInt(id, 10)))[0];
       this.item = app || {};
+      if (app.state) {
+        this.item.notes = getCurrent(app.state).notes;
+        this.item.status = getCurrent(app.state).status;
+      }
     } catch (e) {
       this.item = {};
     }

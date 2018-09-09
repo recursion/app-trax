@@ -18,8 +18,8 @@ const ApplicationExpansionControl = (props) => (
 );
 
 ApplicationExpansionControl.propTypes = {
-  expanded: PropTypes.bool,
-  toggleExpand: PropTypes.func
+  expanded: PropTypes.bool.isRequired,
+  toggleExpand: PropTypes.func.isRequired
 };
 
 export default ApplicationExpansionControl;
