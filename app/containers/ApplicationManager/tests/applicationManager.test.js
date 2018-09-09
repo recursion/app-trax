@@ -4,7 +4,7 @@ import ApplicationManager from '../ApplicationManager';
 
 describe('ApplicationManager', () => {
   it('should render a create button', () => {
-    const page = shallow(<ApplicationManager />);
+    const page = mount(<ApplicationManager />);
     expect(page.find('.application-manager__button-create-new').length).toEqual(1);
   });
 
@@ -47,7 +47,7 @@ describe('ApplicationManager', () => {
         contact: 'testee@testers.com',
         state: [{ status: 'Considering', notes: '' }]
       };
-      const wrapper = shallow(<ApplicationManager />);
+      const wrapper = mount(<ApplicationManager />);
       wrapper.instance().startEditItem(item);
       expect(wrapper.state('item')).toEqual(item);
       wrapper.find('.application-manager__button-create-new').simulate('click');

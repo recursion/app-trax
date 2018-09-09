@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ApplicationForm from 'containers/ApplicationForm';
 import ApplicationsList from 'components/ApplicationsList';
 import ApplicationUpdate from 'components/ApplicationUpdate';
+import CreateApplicationButton from 'components/CreateApplicationButton/CreateApplicationButton';
 import * as statusUtils from '../../status.utils';
 import './style.scss';
 
@@ -73,19 +74,10 @@ export default class ApplicationManager extends React.PureComponent {
       <article className="application-manager">
         <div className="application-manager__header">
           <h1 className="title is-inline is-size-4">App-Trax</h1>
-          <button
-            className="application-manager__button-create-new button is-info is-small is-inline is-pulled-right"
-            onClick={this.toggleShowApplicationForm}
-          >
-            {(this.state.showApplicationForm) ?
-              <span className="icon">
-                <i className="fas fa-minus"></i>
-              </span> :
-              <span className="icon">
-                <i className="fas fa-plus"></i>
-              </span>
-            }
-          </button>
+          <CreateApplicationButton
+            toggleShowApplicationForm={this.toggleShowApplicationForm}
+            showApplicationForm={this.state.showApplicationForm}
+          />
         </div>
         {(this.state.showApplicationForm) ?
           <ApplicationForm
