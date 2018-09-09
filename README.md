@@ -14,11 +14,10 @@ Starter project cloned from the boilerplate: https://github.com/flexdinesh/react
 - [ ] Add instructions/help
 - [ ] Calculate and view statistics on application progressions
 - [ ] Sort by status
-- [ ] Update record to 'no-reply' after X time period.
 - [ ] Increase test coverage.
 - [ ] Improved desktop views
 - [ ] Convert to indexedDB -> web DB using something like pouchDB and couchDB for better storage and syncing options.
-- [ ] Update status color based on time since last update?
+- [ ] Update status color based on time since last update / automatically set to no-reply after X time?
 
 ## Usage Instructions
 
