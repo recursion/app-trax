@@ -78,8 +78,9 @@ describe('ApplicationForm', () => {
       expect('state' in submittedApplication);
       expect(submittedApplication.company).toEqual(company);
       expect(submittedApplication.state[0].notes).toEqual(notes);
-      expect(submittedApplication.state[0].status).toEqual('Considering');
+      expect(submittedApplication.state[0].status).toEqual('Applied');
     });
+
     describe('Returned Application Data', () => {
       it('creates a state property that is an array of objects with notes, status, and updated props', () => {
         const onSubmit = jest.fn();
@@ -99,11 +100,12 @@ describe('ApplicationForm', () => {
 
         expect('state' in submittedApplication);
         expect(Array.isArray(submittedApplication.state)).toEqual(true);
-        expect(submittedApplication.state[0].status).toEqual('Considering');
+        expect(submittedApplication.state[0].status).toEqual('Applied');
         expect('updated' in submittedApplication.state[0]).toEqual(true);
       });
     });
   });
+
   describe('Edit existing', () => {
     it('renders a delete button if a company name was passed in', () => {
       const onSubmit = jest.fn();

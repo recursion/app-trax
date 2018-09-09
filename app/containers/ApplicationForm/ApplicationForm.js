@@ -11,11 +11,10 @@ export default class ApplicationForm extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      // mode: props.mode || 'create',
       company: props.company || '',
       contact: props.contact || '',
       notes: props.notes || '',
-      status: props.status || 'Considering',
+      status: props.status || 'Applied',
       companyHelpMsg: false
     };
     this.handleChangeField = this.handleChangeField.bind(this);
@@ -86,7 +85,7 @@ export default class ApplicationForm extends React.PureComponent {
             onDelete={this.props.onDelete}
             onSubmit={this.handleSubmit}
             onCancel={this.props.onCancel}
-            showDelete={this.props.company}
+            showDelete={this.props.company !== ''}
           />
 
         </div>
