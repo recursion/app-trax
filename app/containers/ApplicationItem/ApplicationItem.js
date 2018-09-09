@@ -1,20 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ApplicationItemDetails from 'components/ApplicationItemDetails';
+import ApplicationExpansionControl from 'components/ApplicationExpansionControl';
+import ApplicationItemControls from 'components/ApplicationItemControls';
+import ApplicationStatus from 'components/ApplicationStatus';
 import './style.scss';
-
-const getColor = (status) => {
-  switch (status) {
-    case 'Considering':
-      return 'has-text-warning';
-    case 'Rejected':
-    case 'Offer Declined':
-    case 'No Reply':
-      return 'has-text-danger';
-    default:
-      return 'has-text-success';
-  }
-};
 
 export default class ApplicationItem extends React.PureComponent {
   constructor(props) {
@@ -32,56 +22,29 @@ export default class ApplicationItem extends React.PureComponent {
   render() {
     const { company, state } = this.props.app;
     const { status } = state[0];
-    const renderHistoryButton = () => (
-      (state.length > 1) ?
-        <button className="application-item__history-button">
-          <span className="icon is-size-6">
-            <i className="fas fa-history"></i>
-          </span>
-        </button> :
-        ''
-    );
 
     return (
       <li className="application-item has-text-white has-background-dark">
         <div className="application-item__status-bar">
-          <button
-            className="application-item__expand-button is-size-5"
-            onClick={this.toggleExpand}
-          >
-            {(this.state.expanded) ?
-              <span className="icon is-size-6">
-                <i className="fas fa-minus"></i>
-              </span> :
-              <span className="icon is-size-6">
-                <i className="fas fa-expand-arrows-alt"></i>
-              </span>
-            }
-          </button>
+          <ApplicationExpansionControl
+            expanded={this.state.expanded}
+            toggleExpand={this.toggleExpand}
+          />
           <span className="application-item__name subtitle has-text-white">
             {company}
             {(this.state.expanded) ?
-              <span className="application-item__controls">
-                <button onClick={() => this.props.edit(this.props.app)}>
-                  <span className="icon is-size-6">
-                    <i className="fas fa-edit"></i>
-                  </span>
-                </button>
-                {renderHistoryButton()}
-              </span> : ''
+              <ApplicationItemControls
+                app={this.props.app}
+                edit={this.edit}
+                itemState={state}
+              /> : ''
             }
           </span>
-          <button
-            className={'application-item__status is-pulled-right is-size-7'}
-            onClick={() => this.props.update(this.props.app)}
-          >
-            <span className={` ${getColor(status)}`}>
-              {status}
-              <span className="application-item__status-update-icon icon is-small">
-                <i className="fas fa-sync-alt"></i>
-              </span>
-            </span>
-          </button>
+          <ApplicationStatus
+            update={this.props.update}
+            status={status}
+            app={this.props.app}
+          />
         </div>
         {(this.state.expanded) ? <ApplicationItemDetails {...this.props.app} /> : ''}
       </li>
