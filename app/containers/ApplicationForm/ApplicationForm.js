@@ -63,15 +63,18 @@ export default class ApplicationForm extends React.PureComponent {
               'Create New'
             }
           </h1>
+
           <CompanyInput
             handleChangeField={this.handleChangeField}
             company={this.state.company}
             companyHelpMsg={this.state.companyHelpMsg}
           />
+
           <ContactInput
             handleChangeField={this.handleChangeField}
             contact={this.state.contact}
           />
+
           <NotesInput
             handleChangeField={this.handleChangeField}
             notes={this.state.notes}
@@ -81,6 +84,7 @@ export default class ApplicationForm extends React.PureComponent {
             handleChangeField={this.handleChangeField}
             status={this.state.status}
           />
+
           <FormControlButtons
             onDelete={this.props.onDelete}
             onSubmit={this.handleSubmit}
