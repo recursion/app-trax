@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ApplicationForm from 'containers/ApplicationForm';
 import ApplicationsList from 'components/ApplicationsList';
 import ApplicationUpdate from 'components/ApplicationUpdate';
+import * as statusUtils from '../../status.utils';
 import './style.scss';
 
 export default class ApplicationManager extends React.PureComponent {
@@ -37,7 +38,7 @@ export default class ApplicationManager extends React.PureComponent {
   edit(item) {
     // replace current state head with new item state
     const currentItemState = this.state.item.state;
-    const nextItemState = currentItemState.map((state, i) => ((i === 0) ? item.state[0] : state));
+    const nextItemState = statusUtils.updateCurrent(currentItemState, item.state);
     const nextItem = Object.assign({}, this.state.item, {
       company: item.company,
       contact: item.contact,
@@ -64,8 +65,8 @@ export default class ApplicationManager extends React.PureComponent {
       item = {
         company: this.state.item.company,
         contact: this.state.item.contact,
-        notes: this.state.item.state[0].notes,
-        status: this.state.item.state[0].status
+        notes: statusUtils.getCurrent(this.state.item.state).notes,
+        status: statusUtils.getCurrent(this.state.item.state).status
       };
     }
     return (

@@ -4,6 +4,7 @@ import ApplicationItemDetails from 'components/ApplicationItemDetails';
 import ApplicationExpansionControl from 'components/ApplicationExpansionControl';
 import ApplicationItemControls from 'components/ApplicationItemControls';
 import ApplicationStatus from 'components/ApplicationStatus';
+import { getCurrent } from '../../status.utils';
 import './style.scss';
 
 export default class ApplicationItem extends React.PureComponent {
@@ -21,7 +22,7 @@ export default class ApplicationItem extends React.PureComponent {
 
   render() {
     const { company, state } = this.props.app;
-    const { status } = state[0];
+    const { status } = getCurrent(state);
 
     return (
       <li className="application-item has-text-white has-background-dark">
