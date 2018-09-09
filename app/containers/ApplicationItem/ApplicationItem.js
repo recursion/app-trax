@@ -48,6 +48,7 @@ export default class ApplicationItem extends React.PureComponent {
               app={this.props.app}
               edit={this.props.edit}
               itemState={state}
+              viewHistory={this.props.viewHistory}
             />
           </ApplicationItemDetails> :
           ''
@@ -60,5 +61,6 @@ export default class ApplicationItem extends React.PureComponent {
 ApplicationItem.propTypes = {
   app: PropTypes.object,
   update: PropTypes.func,
+  viewHistory: PropTypes.func,
   edit: PropTypes.func
 };

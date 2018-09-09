@@ -9,6 +9,7 @@ const ApplicationsList = (props) => (
       <ApplicationItem
         key={app.createdAt}
         update={props.update}
+        viewHistory={props.viewHistory}
         edit={props.edit}
         app={app}
       />
@@ -19,6 +20,7 @@ const ApplicationsList = (props) => (
 ApplicationsList.propTypes = {
   apps: PropTypes.array,
   update: PropTypes.func,
+  viewHistory: PropTypes.func,
   edit: PropTypes.func
 };
 

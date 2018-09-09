@@ -1,0 +1,19 @@
+.application-history {
+  &__title {
+    margin-left: 5px;
+  }
+  &__contact {
+    margin-top: 3px;
+    border: 1px solid black;
+    padding: 0;
+  }
+
+  &__node:first-of-type {
+    border-top: 1px solid black;
+  }
+
+  &__node {
+    border-bottom: 1px solid black;
+    padding: 5px;
+  }
+}

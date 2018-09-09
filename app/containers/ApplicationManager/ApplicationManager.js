@@ -4,6 +4,7 @@ import ApplicationForm from 'containers/ApplicationForm';
 import ApplicationsList from 'components/ApplicationsList';
 import ApplicationUpdate from 'components/ApplicationUpdate';
 import CreateApplicationButton from 'components/CreateApplicationButton/CreateApplicationButton';
+import ApplicationHistory from 'containers/ApplicationHistory';
 import * as statusUtils from '../../status.utils';
 import './style.scss';
 
@@ -13,15 +14,26 @@ export default class ApplicationManager extends React.PureComponent {
     this.state = {
       showApplicationForm: false,
       showUpdateForm: false,
+      viewHistory: false,
       editing: false,
       item: null
     };
     this.toggleShowApplicationForm = this.toggleShowApplicationForm.bind(this);
     this.startUpdateItem = this.startUpdateItem.bind(this);
     this.finishUpdateItem = this.finishUpdateItem.bind(this);
+    this.viewHistory = this.viewHistory.bind(this);
+    this.closeViewHistory = this.closeViewHistory.bind(this);
     this.startEditItem = this.startEditItem.bind(this);
     this.edit = this.edit.bind(this);
     this.delete = this.delete.bind(this);
+  }
+
+  viewHistory(item) {
+    this.setState(() => ({ item, viewHistory: true }));
+  }
+
+  closeViewHistory() {
+    this.setState(() => ({ item: null, viewHistory: false }));
   }
 
   toggleShowApplicationForm() {
@@ -70,6 +82,22 @@ export default class ApplicationManager extends React.PureComponent {
         status: statusUtils.getCurrent(this.state.item.state).status
       };
     }
+    const showApplications = () => {
+      if (
+        !this.state.showApplicationForm &&
+        this.props.applications &&
+        this.props.applications.length > 0
+      ) return true;
+      return false;
+    };
+
+    if (this.state.viewHistory) {
+      return (<ApplicationHistory
+        close={this.closeViewHistory}
+        application={this.state.item}
+      />);
+    }
+
     return (
       <article className="application-manager">
         <div className="application-manager__header">
@@ -95,11 +123,12 @@ export default class ApplicationManager extends React.PureComponent {
           /> :
           ''
         }
-        {(!this.state.showApplicationForm && this.props.applications && this.props.applications.length > 0) ?
+        {(showApplications()) ?
           <ApplicationsList
             apps={this.props.applications}
             update={this.startUpdateItem}
             edit={this.startEditItem}
+            viewHistory={this.viewHistory}
           /> :
           ''
         }
