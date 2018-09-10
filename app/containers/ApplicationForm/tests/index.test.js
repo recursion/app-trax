@@ -67,6 +67,23 @@ describe('ApplicationForm', () => {
       expect(addMock).not.toBeCalled();
     });
 
+    it('adds a createdAt property to the object', () => {
+      const addMock = jest.fn();
+      const wrapper = mount(
+        <MemoryRouter>
+          <ApplicationForm
+            addApplication={addMock}
+            deleteApplication={() => {}}
+            updateApplication={() => {}}
+          />
+        </MemoryRouter>
+      );
+      wrapper.find('#company').simulate('change', { target: { value: 'Test Company' } });
+      wrapper.find('#contact').simulate('change', { target: { value: 'me@you.com' } });
+      wrapper.find('.application-form__submit-button').simulate('click');
+      expect('createdAt' in addMock.mock.calls[0][0]).toEqual(true);
+    });
+
     it('renders a help message when submit is clicked with an empty company name', () => {
       const addMock = jest.fn();
       const wrapper = mount(
@@ -221,8 +238,44 @@ describe('ApplicationForm', () => {
       expect(deleteApplication).toBeCalled();
     });
 
-    /*
     it('does not overwrite an existing state array when updating the current state', () => {
+      const deleteApplication = jest.fn();
+      const updateMock = jest.fn();
+      const id = Date.now();
+      const mockApps = [{
+        company: 'Test',
+        contact: 'Tester@testing.com',
+        createdAt: id,
+        state: [
+          {
+            status: 'Considering',
+            notes: 'Hopeful on this one!',
+            updated: Date.parse('Dec 1, 2000')
+          },
+          {
+            status: 'Considering',
+            notes: 'Hopeful on this one!',
+            updated: Date.parse('Dec 25, 1998')
+          }
+        ]
+      }];
+      const wrapper = mount(
+        <MockRouter params={{ id }}>
+          <ApplicationForm
+            addApplication={() => {}}
+            deleteApplication={deleteApplication}
+            updateApplication={updateMock}
+            applications={mockApps}
+          />
+        </MockRouter>
+      );
+      wrapper.find('.application-form__submit-button').simulate('click');
+      expect(updateMock).toBeCalled();
+      expect(updateMock.mock.calls[0][0].state.length).toEqual(2);
+    });
+
+    /*
+    it('updates all changed fields successfully on edit', () => {
 
     });
     */
