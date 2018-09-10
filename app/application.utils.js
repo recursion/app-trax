@@ -27,10 +27,10 @@ export const deleteApplication = (applications, application) => applications.fil
 
 /**
  * takes an application object and returns a new application
- * object with a createdAt: property
+ * object with a createdAt: property (if none exists)
  * @param {object<application>} application
  * @returns {object<application>}
  */
 export const createApplication = (application) => Object.assign({},
-  { createdAt: Date.now() },
-  application);
+  application,
+  (application.createdAt) ? {} : { createdAt: Date.now() });
