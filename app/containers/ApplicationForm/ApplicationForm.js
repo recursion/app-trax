@@ -82,7 +82,7 @@ class ApplicationForm extends React.PureComponent {
         const data = {
           company: this.state.company,
           contact: this.state.contact,
-          createdAt: this.item.createdAt,
+          createdAt: Date.now(),
           state: [
             {
               notes: this.state.notes,
