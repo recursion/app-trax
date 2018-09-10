@@ -181,7 +181,7 @@ describe('ApplicationForm', () => {
   });
 
   describe('Edit existing', () => {
-    it('renders a delete button if an applicatoin was passed in', () => {
+    it('renders a delete button if an application was passed in', () => {
       const id = Date.now();
       const mockApps = [{
         company: 'Test',
@@ -238,6 +238,38 @@ describe('ApplicationForm', () => {
       expect(deleteApplication).toBeCalled();
     });
 
+    it('correctly renders existing company name, contact data, notes, and status when passed in', () => {
+      const deleteApplication = jest.fn();
+      const id = Date.now();
+      const mockApps = [{
+        company: 'Test',
+        contact: 'Tester@testing.com',
+        createdAt: id,
+        state: [
+          {
+            status: 'Considering',
+            notes: 'Hopeful on this one!',
+            updated: id
+          }
+        ]
+      }];
+      const item = mockApps[0];
+      const wrapper = mount(
+        <MockRouter params={{ id }}>
+          <ApplicationForm
+            addApplication={() => {}}
+            deleteApplication={deleteApplication}
+            updateApplication={() => {}}
+            applications={mockApps}
+          />
+        </MockRouter>
+      );
+      expect(wrapper.find('#company').props().value).toEqual(item.company);
+      expect(wrapper.find('#contact').props().value).toEqual(item.contact);
+      expect(wrapper.find('#status').props().value).toEqual(item.state[0].status);
+      expect(wrapper.find('#notes').props().value).toEqual(item.state[0].notes);
+    });
+
     it('does not overwrite an existing state array when updating the current state', () => {
       const deleteApplication = jest.fn();
       const updateMock = jest.fn();
@@ -274,14 +306,8 @@ describe('ApplicationForm', () => {
       expect(updateMock.mock.calls[0][0].state.length).toEqual(2);
     });
 
-    /*
     it('updates all changed fields successfully on edit', () => {
-
-    });
-    */
-
-    it('correctly renders existing company name, contact data, notes, and status when passed in', () => {
-      const deleteApplication = jest.fn();
+      const updateApplication = jest.fn();
       const id = Date.now();
       const mockApps = [{
         company: 'Test',
@@ -289,27 +315,39 @@ describe('ApplicationForm', () => {
         createdAt: id,
         state: [
           {
+            status: 'Applied',
+            notes: 'Lets go for it!',
+            updated: Date.parse('Dec 25, 1995')
+          },
+          {
             status: 'Considering',
             notes: 'Hopeful on this one!',
-            updated: id
+            updated: Date.parse('Dec 12, 1990')
           }
         ]
       }];
-      const item = mockApps[0];
       const wrapper = mount(
         <MockRouter params={{ id }}>
           <ApplicationForm
             addApplication={() => {}}
-            deleteApplication={deleteApplication}
-            updateApplication={() => {}}
+            deleteApplication={() => {}}
+            updateApplication={updateApplication}
             applications={mockApps}
           />
         </MockRouter>
       );
-      expect(wrapper.find('#company').props().value).toEqual(item.company);
-      expect(wrapper.find('#contact').props().value).toEqual(item.contact);
-      expect(wrapper.find('#status').props().value).toEqual(item.state[0].status);
-      expect(wrapper.find('#notes').props().value).toEqual(item.state[0].notes);
+      wrapper.find('#company').simulate('change', { target: { value: 'FU' } });
+      wrapper.find('#contact').simulate('change', { target: { value: 'me@you.com' } });
+      wrapper.find('#status').simulate('change', { target: { value: 'Offer Accepted' } });
+      wrapper.find('#notes').simulate('change', { target: { value: 'Hope this works out' } });
+      wrapper.find('.application-form__submit-button').simulate('click');
+
+      expect(updateApplication).toBeCalled();
+      expect(updateApplication.mock.calls[0][0].company).toEqual('FU');
+      expect(updateApplication.mock.calls[0][0].contact).toEqual('me@you.com');
+      expect(updateApplication.mock.calls[0][0].state.length).toEqual(2);
+      expect(updateApplication.mock.calls[0][0].state[0].status).toEqual('Offer Accepted');
+      expect(updateApplication.mock.calls[0][0].state[0].notes).toEqual('Hope this works out');
     });
   });
 });
