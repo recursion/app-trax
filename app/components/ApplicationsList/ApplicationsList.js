@@ -4,7 +4,7 @@ import ApplicationItem from 'containers/ApplicationItem';
 import './style.scss';
 
 const ApplicationsList = (props) => (
-  <ul className="applications-list">
+  <ul className="applications-list container">
     {props.apps.map((app) => (
       <ApplicationItem
         key={app.createdAt}

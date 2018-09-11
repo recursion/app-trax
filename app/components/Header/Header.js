@@ -7,36 +7,38 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
   render() {
     return (
       <div className="header">
-        <h1 className="title is-inline is-size-4">App-Trax</h1>
-        {(this.props.location.pathname === '/') ?
-          <Link className="create-new-button router-link is-pulled-right button is-small is-info" to="/applications/create">
-            <span className="icon">
-              <i className="fas fa-plus"></i>
-            </span>
-          </Link> : ''
-        }
-        {(this.props.location.pathname === '/applications/create' ||
-        this.props.location.pathname.includes('/applications/edit')
-        ) ?
-          <Link
-            className="router-link is-pulled-right button is-small is-danger"
-            to="/"
-          >
-            <span className="icon">
-              <i className="fas fa-times"></i>
-            </span>
-          </Link> : ''
-        }
-        {(this.props.location.pathname.includes('/applications/history')) ?
-          <Link
-            className="router-link is-pulled-right button is-small is-info"
-            to="/"
-          >
-            <span className="icon">
-              <i className="fas fa-backspace"></i>
-            </span>
-          </Link> : ''
-        }
+        <div className="container">
+          <h1 className="title is-inline is-size-4">App-Trax</h1>
+          {(this.props.location.pathname === '/') ?
+            <Link className="create-new-button router-link is-pulled-right button is-small is-info" to="/applications/create">
+              <span className="icon">
+                <i className="fas fa-plus"></i>
+              </span>
+            </Link> : ''
+          }
+          {(this.props.location.pathname === '/applications/create' ||
+          this.props.location.pathname.includes('/applications/edit')
+          ) ?
+            <Link
+              className="router-link is-pulled-right button is-small is-danger"
+              to="/"
+            >
+              <span className="icon">
+                <i className="fas fa-times"></i>
+              </span>
+            </Link> : ''
+          }
+          {(this.props.location.pathname.includes('/applications/history')) ?
+            <Link
+              className="router-link is-pulled-right button is-small is-info"
+              to="/"
+            >
+              <span className="icon">
+                <i className="fas fa-backspace"></i>
+              </span>
+            </Link> : ''
+          }
+        </div>
       </div>
     );
   }
