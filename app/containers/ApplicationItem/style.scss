@@ -2,11 +2,15 @@ $border-color: white;
 .application-item:first-of-type {
   border-top: 1px solid $border-color;
 }
+.application-item:last-of-type {
+  margin-bottom: 4rem;
+}
 .application-item {
   border-bottom: 1px solid $border-color;
   border-left: 1px solid $border-color;
   border-right: 1px solid $border-color;
   padding: 2px;
+
 
   &__expand-button {
     padding: 0;
@@ -29,4 +33,3 @@ $border-color: white;
     }
   }
 }
-

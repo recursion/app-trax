@@ -2,11 +2,12 @@ html,
 body {
   height: 100%;
   width: 100%;
-  overflow: auto;
+  overflow: hidden;
 }
 
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
 }
 
 body.fontLoaded {

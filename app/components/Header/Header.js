@@ -8,7 +8,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
     return (
       <div className="header">
         <div className="container">
-          <h1 className="title is-inline is-size-4">App-Trax</h1>
+          <h1 className="title is-inline is-size-4 has-text-white">App-Trax</h1>
           {(this.props.location.pathname === '/') ?
             <Link className="create-new-button router-link is-pulled-right button is-small is-info" to="/applications/create">
               <span className="icon">

@@ -99,7 +99,7 @@ class ApplicationForm extends React.PureComponent {
 
   render() {
     return (
-      <section className="application-form">
+      <section className="application-form section">
         <h1 className="application-form__title subtitle has-text-centered">
           {(this.item.company) ?
             'Edit' :

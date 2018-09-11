@@ -23,6 +23,16 @@ export default class ApplicationItem extends React.PureComponent {
   render() {
     const { company, state } = this.props.app;
     const { status } = getCurrent(state);
+    const showNameBasedOnSize = (str) => {
+      if (window.matchMedia('(max-width: 320px)').matches) {
+        return (str.length < 12) ? str : `${str.slice(0, 12)}...`;
+      }
+
+      if (window.matchMedia('(max-width: 414px)').matches) {
+        return (str.length < 16) ? str : `${str.slice(0, 16)}...`;
+      }
+      return str;
+    };
 
     return (
       <li className="application-item has-text-white has-background-dark">
@@ -32,7 +42,7 @@ export default class ApplicationItem extends React.PureComponent {
             toggleExpand={this.toggleExpand}
           />
           <span className="application-item__name subtitle has-text-white">
-            {company}
+            {showNameBasedOnSize(company)}
           </span>
           <ApplicationStatus
             update={this.props.update}

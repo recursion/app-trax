@@ -1,4 +1,14 @@
 .header {
-  padding: 0.1rem 0.2rem;
   margin-bottom: .05rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: lightgrey;
+  border: 1px solid white;
+  .container {
+    background-color: grey;
+    padding: .2rem;
+  }
 }
