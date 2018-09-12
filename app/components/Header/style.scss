@@ -1,13 +1,12 @@
 .header {
-  margin-bottom: .05rem;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 2;
   background-color: lightgrey;
-  border: 1px solid white;
   .container {
+    border: 1px solid white;
     background-color: grey;
     padding: .2rem;
   }

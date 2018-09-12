@@ -1,4 +1,7 @@
 .application-form {
+  overflow-y: auto;
+  height: 100vh;
+
   &__title {
     margin-bottom: 0 !important;
   }
