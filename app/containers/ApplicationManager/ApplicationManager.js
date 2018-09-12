@@ -6,8 +6,8 @@ import './style.scss';
 
 export default class ApplicationManager extends React.PureComponent {
   static propTypes = {
-    applications: PropTypes.array,
-    updateApplication: PropTypes.func
+    applications: PropTypes.array.isRequired,
+    updateApplication: PropTypes.func.isRequired
   }
 
   state = {
