@@ -1,13 +1,17 @@
 ## App-Trax
 
-A simple job application status tracker. This application only runs and stores data locally (for now), allowing you to easily track the progress of your job hunt by adding companies you've applied to - then tracking their status and adding notes as the process progresses.
+A simple job application status tracker. This application only runs and stores data locally (for now), allowing you to easily track the progress of your job hunt by adding companies you've applied to - then tracking their status and adding notes as the process progresses. 
+
+- This application is mobile first and responsive, and is still a little under-developed on desktop, but I'll get there!
+- May look at something like pouchDB -> couchDB in the future for syncing across multiple devices)
+- Fairly good test coverage at this point (around 80%) - would obviously like to get this higher.
 
 Demo: https://lab.recursionslaboratory.com
 
 
 Starter project cloned from the boilerplate: https://github.com/flexdinesh/react-redux-boilerplate 
 
-## Features / Todo
+## Todo
 
 - [x] Create new applications
 - [x] Update application status
@@ -21,10 +25,6 @@ Starter project cloned from the boilerplate: https://github.com/flexdinesh/react
 - [ ] Improved desktop views
 - [ ] Convert to indexedDB -> web DB using something like pouchDB and couchDB for better storage and syncing options.
 - [ ] Update status color based on time since last update / automatically set to no-reply after X time?
-
-## Known Issues
-
-- Create New form does not render properly / is not fully scrollable on safari mobile.
 
 ## Usage Instructions
 
@@ -55,6 +55,11 @@ npm run start
 ## Testing 
 - Test once with coverage: `npm run test`
 - Test watch: `npm run test:watch`
+
+## Known Issues
+
+- Create New form does not render properly / is not fully scrollable on safari mobile.
+
 
 ## License
 
