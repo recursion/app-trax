@@ -173,5 +173,19 @@ describe('ApplicationForm', () => {
       expect(updateApplication.mock.calls[0][0].state[0].status).toEqual('Offer Accepted');
       expect(updateApplication.mock.calls[0][0].state[0].notes).toEqual('Hope this works out');
     });
+
+    it('has a non-null id property', () => {
+      const { props: { updateApplication }, wrapper } = setup({}, { id: 'lkjasdlf9109123lk109d' });
+
+      wrapper.find('#company').simulate('change', { target: { value: 'FU' } });
+      wrapper.find('#contact').simulate('change', { target: { value: 'me@you.com' } });
+      wrapper.find('#status').simulate('change', { target: { value: 'Offer Accepted' } });
+      wrapper.find('#notes').simulate('change', { target: { value: 'Hope this works out' } });
+      wrapper.find('.application-form__submit-button').simulate('click');
+
+      expect(updateApplication).toBeCalled();
+      expect(updateApplication.mock.calls[0][0].id).not.toEqual('');
+      expect('id' in updateApplication.mock.calls[0][0]).toEqual(true);
+    });
   });
 });
