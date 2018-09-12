@@ -19,6 +19,10 @@ Starter project cloned from the boilerplate: https://github.com/flexdinesh/react
 - [ ] Convert to indexedDB -> web DB using something like pouchDB and couchDB for better storage and syncing options.
 - [ ] Update status color based on time since last update / automatically set to no-reply after X time?
 
+## Known Issues
+
+- Create New form does not render properly / is not fully scrollable on safari mobile.
+
 ## Usage Instructions
 
 1. Use the + button to create a new application
