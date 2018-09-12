@@ -18,10 +18,10 @@ const CompanyInput = (props) => (
             onChange={(e) => props.handleChangeField('company', e.target.value)}
           />
         </div>
-        {(props.companyHelpMsg) ?
+        {(props.companyHelpMsg) &&
           <p className="application-form__company-help-msg help is-danger">
             Must not be empty
-          </p> : ''
+          </p>
         }
       </div>
     </div>
@@ -29,9 +29,9 @@ const CompanyInput = (props) => (
 );
 
 CompanyInput.propTypes = {
-  company: PropTypes.string,
+  company: PropTypes.string.isRequired,
   companyHelpMsg: PropTypes.bool,
-  handleChangeField: PropTypes.func
+  handleChangeField: PropTypes.func.isRequired
 };
 
 export default CompanyInput;
