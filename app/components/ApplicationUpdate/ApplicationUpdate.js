@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import NotesInput from 'components/NotesInput';
 import StatusInput from 'components/StatusInput';
 import FormControlButtons from 'components/FormControlButtons';
+import DateInput from 'components/DateInput';
 
 export default class ApplicationUpdate extends React.PureComponent {
   static propTypes = {
@@ -12,7 +13,8 @@ export default class ApplicationUpdate extends React.PureComponent {
 
   state = {
     notes: '',
-    status: this.props.item.state[0].status
+    status: this.props.item.state[0].status,
+    createdAt: this.props.item.createdAt
   }
 
   handleChangeField = (key, value) => {
@@ -37,6 +39,11 @@ export default class ApplicationUpdate extends React.PureComponent {
             <StatusInput
               handleChangeField={this.handleChangeField}
               status={this.state.status}
+            />
+
+            <DateInput
+              handleChangeField={this.handleChangeField}
+              date={this.state.createdAt}
             />
 
             <FormControlButtons

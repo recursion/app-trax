@@ -6,6 +6,7 @@ import ContactInput from 'components/ContactInput';
 import NotesInput from 'components/NotesInput';
 import StatusInput from 'components/StatusInput';
 import FormControlButtons from 'components/FormControlButtons';
+import DateInput from 'components/DateInput';
 import { getCurrent, updateCurrent } from '../../status.utils';
 import './style.scss';
 
@@ -37,6 +38,7 @@ class ApplicationForm extends React.PureComponent {
     this.state = {
       company: this.item.company || '',
       contact: this.item.contact || '',
+      createdAt: this.item.createdAt || Date.now(),
       notes: this.item.notes || '',
       status: this.item.status || 'Applied',
       companyHelpMsg: false
@@ -86,7 +88,7 @@ class ApplicationForm extends React.PureComponent {
         const data = {
           company: this.state.company,
           contact: this.state.contact,
-          createdAt: Date.now(),
+          createdAt: this.state.createdAt,
           state: [
             {
               notes: this.state.notes,
@@ -129,6 +131,10 @@ class ApplicationForm extends React.PureComponent {
         <StatusInput
           handleChangeField={this.handleChangeField}
           status={this.state.status}
+        />
+        <DateInput
+          handleChangeField={this.handleChangeField}
+          date={this.state.createdAt}
         />
 
         <FormControlButtons
