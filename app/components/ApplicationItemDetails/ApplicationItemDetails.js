@@ -8,12 +8,11 @@ const ApplicationItemDetails = (props) => (
     <div className="">
       <p>{getCurrent(props.state).notes}</p>
     </div>
-    {(props.contact) ?
+    {(props.contact) &&
       <div className="application-details__contact is-pulled-left">
         <label className="application-details__contact-label is-size-7">Contact:</label>
         <span className="application-details__contact-value is-size-7">{props.contact}</span>
-      </div> :
-      ''
+      </div>
     }
     <span className="is-pulled-right">{props.children}</span>
   </div>

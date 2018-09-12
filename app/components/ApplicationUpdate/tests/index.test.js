@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import ApplicationUpdate from '../ApplicationUpdate';
 
 describe('ApplicationUpdate', () => {
@@ -10,8 +10,8 @@ describe('ApplicationUpdate', () => {
       state: [{ notes: '', status: 'Considering' }],
       createdAt: Date.now()
     };
-    const wrapper = shallow(<ApplicationUpdate item={item} />);
-    const test = wrapper.find('#application-update-form__status').props().value;
+    const wrapper = mount(<ApplicationUpdate item={item} />);
+    const test = wrapper.find('#status').props().value;
     expect(test).toEqual('Considering');
   });
   it('calls update with no args when cancel is clicked', () => {
@@ -22,21 +22,8 @@ describe('ApplicationUpdate', () => {
       createdAt: Date.now()
     };
     const update = jest.fn();
-    const wrapper = shallow(<ApplicationUpdate item={item} update={update} />);
-    wrapper.find('.application-update-form__button-cancel').simulate('click');
-    expect(update).toBeCalled();
-    expect(update).toBeCalledWith();
-  });
-  it('calls update with no args when close is clicked', () => {
-    const item = {
-      name: 'Test',
-      contact: 'testers',
-      state: [{ notes: '', status: 'Applied' }],
-      createdAt: Date.now()
-    };
-    const update = jest.fn();
-    const wrapper = shallow(<ApplicationUpdate item={item} update={update} />);
-    wrapper.find('.application-update-form__button-close').simulate('click');
+    const wrapper = mount(<ApplicationUpdate item={item} update={update} />);
+    wrapper.find('.application-form__cancel-button').simulate('click');
     expect(update).toBeCalled();
     expect(update).toBeCalledWith();
   });
@@ -49,10 +36,10 @@ describe('ApplicationUpdate', () => {
     };
     const update = jest.fn();
     const wrapper = mount(<ApplicationUpdate item={item} update={update} />);
-    const input = wrapper.find('#application-update-form__status');
+    const input = wrapper.find('#status');
     input.simulate('change', { target: { value: 'Rejected' } });
-    expect(wrapper.find('#application-update-form__status').props().value).toEqual('Rejected');
-    wrapper.find('.application-update-form__button-submit').simulate('click');
+    expect(wrapper.find('#status').props().value).toEqual('Rejected');
+    wrapper.find('.application-form__submit-button').simulate('click');
     expect(update).toBeCalled();
     expect(update.mock.calls[0]).not.toEqual(null);
   });
@@ -65,10 +52,10 @@ describe('ApplicationUpdate', () => {
     };
     const update = jest.fn();
     const wrapper = mount(<ApplicationUpdate item={item} update={update} />);
-    const input = wrapper.find('#application-update-form__status');
+    const input = wrapper.find('#status');
     input.simulate('change', { target: { value: 'Rejected' } });
-    expect(wrapper.find('#application-update-form__status').props().value).toEqual('Rejected');
-    wrapper.find('.application-update-form__button-submit').simulate('click');
+    expect(wrapper.find('#status').props().value).toEqual('Rejected');
+    wrapper.find('.application-form__submit-button').simulate('click');
     expect(update).toBeCalled();
     expect('createdAt' in update.mock.calls[0][0]).toBe(true);
   });

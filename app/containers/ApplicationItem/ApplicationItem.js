@@ -8,19 +8,22 @@ import { getCurrent } from '../../status.utils';
 import './style.scss';
 
 export default class ApplicationItem extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = { expanded: false };
-    this.toggleExpand = this.toggleExpand.bind(this);
+  static propTypes = {
+    app: PropTypes.object,
+    update: PropTypes.func,
+    viewHistory: PropTypes.func,
+    edit: PropTypes.func
   }
 
-  toggleExpand() {
+  state = { expanded: false };
+
+  toggleExpand = () => {
     this.setState((state) => ({
       expanded: !state.expanded
     }));
   }
 
-  render() {
+  render = () => {
     const { company, state } = this.props.app;
     const { status } = getCurrent(state);
     const showNameBasedOnSize = (str) => {
@@ -51,7 +54,7 @@ export default class ApplicationItem extends React.PureComponent {
             app={this.props.app}
           />
         </div>
-        {(this.state.expanded) ?
+        {(this.state.expanded) &&
           <ApplicationItemDetails
             {...this.props.app}
           >
@@ -61,17 +64,9 @@ export default class ApplicationItem extends React.PureComponent {
               itemState={state}
               viewHistory={this.props.viewHistory}
             />
-          </ApplicationItemDetails> :
-          ''
+          </ApplicationItemDetails>
         }
       </li>
     );
   }
 }
-
-ApplicationItem.propTypes = {
-  app: PropTypes.object,
-  update: PropTypes.func,
-  viewHistory: PropTypes.func,
-  edit: PropTypes.func
-};

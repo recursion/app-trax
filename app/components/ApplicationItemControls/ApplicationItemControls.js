@@ -13,7 +13,7 @@ const ApplicationItemControls = (props) => (
       </span>
     </Link>
     {
-      (props.itemState.length > 1) ?
+      (props.itemState.length > 1) &&
         <Link
           className="application-item__history-button router-link is-pulled-right is-small"
           to={`/applications/history/${props.app.createdAt}`}
@@ -21,7 +21,7 @@ const ApplicationItemControls = (props) => (
           <span className="icon is-size-7">
             <i className="fas fa-history"></i>
           </span>
-        </Link> : ''
+        </Link>
     }
   </span>
 );

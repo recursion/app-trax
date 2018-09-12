@@ -10,6 +10,15 @@ import { getCurrent, updateCurrent } from '../../status.utils';
 import './style.scss';
 
 class ApplicationForm extends React.PureComponent {
+  static propTypes = {
+    applications: PropTypes.array,
+    match: PropTypes.object,
+    history: PropTypes.object,
+    addApplication: PropTypes.func,
+    updateApplication: PropTypes.func,
+    deleteApplication: PropTypes.func,
+  }
+
   constructor(props) {
     super(props);
 
@@ -32,19 +41,14 @@ class ApplicationForm extends React.PureComponent {
       status: this.item.status || 'Applied',
       companyHelpMsg: false
     };
-
-    this.handleChangeField = this.handleChangeField.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.close = this.close.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleDelete() {
+  handleDelete = () => {
     this.props.deleteApplication(this.item);
     this.close();
   }
 
-  handleChangeField(key, value) {
+  handleChangeField = (key, value) => {
     // reset help message when updating company with non-blank value
     if (key === 'company' && this.state.companyHelpMsg && value !== '') {
       this.setState(() => ({
@@ -57,11 +61,11 @@ class ApplicationForm extends React.PureComponent {
     }));
   }
 
-  close() {
+  close = () => {
     this.props.history.push('/');
   }
 
-  handleSubmit() {
+  handleSubmit = () => {
     if (this.state.company === '') {
       this.setState(() => ({ companyHelpMsg: true }));
     } else {
@@ -97,56 +101,45 @@ class ApplicationForm extends React.PureComponent {
     }
   }
 
-  render() {
-    return (
-      <section className="application-form section">
-        <h1 className="application-form__title subtitle has-text-centered">
-          {(this.item.company) ?
-            'Edit' :
-            'Create New'
-          }
-        </h1>
-        <div className="container">
-          <CompanyInput
-            handleChangeField={this.handleChangeField}
-            company={this.state.company}
-            companyHelpMsg={this.state.companyHelpMsg}
-          />
+  render = () => (
+    <section className="application-form section">
+      <h1 className="application-form__title subtitle has-text-centered">
+        {(this.item.company) ?
+          'Edit' :
+          'Create New'
+        }
+      </h1>
+      <div className="container">
+        <CompanyInput
+          handleChangeField={this.handleChangeField}
+          company={this.state.company}
+          companyHelpMsg={this.state.companyHelpMsg}
+        />
 
-          <ContactInput
-            handleChangeField={this.handleChangeField}
-            contact={this.state.contact}
-          />
+        <ContactInput
+          handleChangeField={this.handleChangeField}
+          contact={this.state.contact}
+        />
 
-          <NotesInput
-            handleChangeField={this.handleChangeField}
-            notes={this.state.notes}
-          />
+        <NotesInput
+          handleChangeField={this.handleChangeField}
+          notes={this.state.notes}
+        />
 
-          <StatusInput
-            handleChangeField={this.handleChangeField}
-            status={this.state.status}
-          />
+        <StatusInput
+          handleChangeField={this.handleChangeField}
+          status={this.state.status}
+        />
 
-          <FormControlButtons
-            onDelete={this.handleDelete}
-            onSubmit={this.handleSubmit}
-            onCancel={this.close}
-            showDelete={this.item.company !== undefined}
-          />
+        <FormControlButtons
+          onDelete={this.handleDelete}
+          onSubmit={this.handleSubmit}
+          onCancel={this.close}
+          showDelete={this.item.company !== undefined}
+        />
 
-        </div>
-      </section>
-    );
-  }
+      </div>
+    </section>
+  )
 }
 export default withRouter(ApplicationForm);
-
-ApplicationForm.propTypes = {
-  applications: PropTypes.array,
-  match: PropTypes.object,
-  history: PropTypes.object,
-  addApplication: PropTypes.func,
-  updateApplication: PropTypes.func,
-  deleteApplication: PropTypes.func,
-};
