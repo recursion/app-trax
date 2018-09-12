@@ -3,9 +3,6 @@ $border-color: white;
   margin-top: 1px;
   border-top: 1px solid $border-color;
 }
-.application-item:last-of-type {
-  margin-bottom: 4rem;
-}
 .application-item {
   border-bottom: 1px solid $border-color;
   border-left: 1px solid $border-color;
@@ -34,3 +31,4 @@ $border-color: white;
     }
   }
 }
+

@@ -1,4 +1,5 @@
-
 .application-manager {
   margin-top: 2rem;
+  overflow-y: auto;
+  height: calc(100vh - 4rem);
 }
