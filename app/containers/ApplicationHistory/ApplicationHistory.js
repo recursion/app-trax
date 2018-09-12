@@ -25,7 +25,7 @@ export default class ApplicationHistory extends React.PureComponent {
   constructor(props) {
     super(props);
     const { id } = props.match.params;
-    const app = props.applications.filter((a) => (a.createdAt === parseInt(id, 10)))[0];
+    const app = props.applications.filter((a) => (a.id === id))[0];
     this.item = app;
     this.state = {};
   }
