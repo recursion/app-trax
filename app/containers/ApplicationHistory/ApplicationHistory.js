@@ -30,23 +30,28 @@ export default class ApplicationHistory extends React.PureComponent {
     this.state = {};
   }
 
-  render = () => (
-    <div className="application-history">
-      <h1
-        className="application-history__title has-text-weight-bold subtitle has-text-centered"
-      >
-        {this.item.company} History
-      </h1>
-      <div className="application-history__contact is-size-7 has-text-white has-text-centered has-background-dark">
-        Contact: {this.item.contact}
+  render = () => {
+    const createId = (k, i) => `${k}:${i}`;
+    return (
+      <div className="application-history section">
+        <h1
+          className="application-history__title has-text-weight-bold subtitle has-text-centered"
+        >
+          {this.item.company} History
+        </h1>
+        {(this.item.contact) &&
+          <div className="application-history__contact is-size-7 has-text-white has-text-centered has-background-dark">
+            Contact: {this.item.contact}
+          </div>
+        }
+        <div className="application-history__list">
+          {this.item.state.map((state, i) => (<ApplicationStateNode
+            key={createId(state.updated, i)}
+            {...state}
+          />))}
+        </div>
       </div>
-      <div className="application-history__list">
-        {this.item.state.map((state) => (<ApplicationStateNode
-          key={state.updated}
-          {...state}
-        />))}
-      </div>
-    </div>
-  )
+    );
+  }
 }
 

@@ -1,7 +1,14 @@
 .application-history {
-  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: 100%;
+
   &__title {
     margin: 0 !important;
+    padding: 0.5rem;
   }
   &__contact {
     margin-top: 3px;
