@@ -26,14 +26,15 @@ export default class ApplicationItem extends React.PureComponent {
   render = () => {
     const { company, state } = this.props.app;
     const { status } = getCurrent(state);
-    const showNameBasedOnSize = (str) => {
+
+    const trimCompanyName = (str) => {
       if (!window.matchMedia) return str;
       if (window.matchMedia('(max-width: 320px)').matches) {
-        return (str.length < 12) ? str : `${str.slice(0, 12)}...`;
+        return (str.length < 10) ? str : `${str.slice(0, 10)}...`;
       }
 
       if (window.matchMedia('(max-width: 414px)').matches) {
-        return (str.length < 16) ? str : `${str.slice(0, 16)}...`;
+        return (str.length < 14) ? str : `${str.slice(0, 14)}...`;
       }
       return str;
     };
@@ -45,8 +46,8 @@ export default class ApplicationItem extends React.PureComponent {
             expanded={this.state.expanded}
             toggleExpand={this.toggleExpand}
           />
-          <span className="application-item__name subtitle has-text-white">
-            {showNameBasedOnSize(company)}
+          <span className="application-item__name subtitle has-text-white is-size-5">
+            {trimCompanyName(company)}
           </span>
           <ApplicationStatus
             update={this.props.update}
