@@ -135,6 +135,7 @@ class ApplicationForm extends React.PureComponent {
         <DateInput
           handleChangeField={this.handleChangeField}
           date={this.state.createdAt}
+          fieldName="createdAt"
         />
 
         <FormControlButtons

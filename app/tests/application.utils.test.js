@@ -1,10 +1,11 @@
+import uuidv4 from 'uuid/v4';
 import { createApplication, updateApplication, deleteApplication } from '../application.utils';
 
 describe('Application Utils', () => {
   describe('createApplication', () => {
-    it('Should return a new application object with a createdAt property attached', () => {
+    it('Should return a new application object with an id property', () => {
       const fixture = { company: 'Test' };
-      expect('createdAt' in createApplication(fixture)).toEqual(true);
+      expect('id' in createApplication(fixture)).toEqual(true);
     });
   });
   describe('updateApplication', () => {
@@ -13,27 +14,24 @@ describe('Application Utils', () => {
         {
           company: 'Test',
           contact: 'marco@test.com',
-          createdAt: Date.parse('Dec 25, 1995')
+          id: uuidv4()
         },
         {
           company: 'Test2',
           contact: 'marco@test2.com',
-          createdAt: Date.now('Dec 28, 1998')
+          id: uuidv4()
         },
         {
           company: 'Test3',
           contact: 'marco@test3.com',
-          createdAt: Date.now('Dec 29, 1999')
+          id: uuidv4()
         }
       ];
-      const updatedRecord = {
-        company: 'Test200',
-        contact: 'marco@test200.com',
-        createdAt: Date.now('Dec 28, 1998')
-      };
+      const updatedRecord = Object.assign({}, initialApplications[1], { company: 'WOOT', contact: 'me@you.com' });
+
       const test = updateApplication(initialApplications, updatedRecord);
-      expect(test[1].company).toEqual('Test200');
-      expect(test[1].contact).toEqual('marco@test200.com');
+      expect(test[1].company).toEqual('WOOT');
+      expect(test[1].contact).toEqual('me@you.com');
     });
   });
   describe('deleteApplication', () => {
@@ -42,17 +40,17 @@ describe('Application Utils', () => {
         {
           company: 'Test',
           contact: 'marco@test.com',
-          createdAt: Date.parse('Dec 25, 1995')
+          id: uuidv4()
         },
         {
           company: 'Test2',
           contact: 'marco@test2.com',
-          createdAt: Date.parse('Dec 28, 1998')
+          id: uuidv4()
         },
         {
           company: 'Test3',
           contact: 'marco@test3.com',
-          createdAt: Date.parse('Dec 29, 2000')
+          id: uuidv4()
         }
       ];
       const record = initialApplications[1];

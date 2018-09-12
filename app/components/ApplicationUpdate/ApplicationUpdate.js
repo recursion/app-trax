@@ -14,7 +14,7 @@ export default class ApplicationUpdate extends React.PureComponent {
   state = {
     notes: '',
     status: this.props.item.state[0].status,
-    createdAt: this.props.item.createdAt
+    updated: Date.now()
   }
 
   handleChangeField = (key, value) => {
@@ -43,7 +43,8 @@ export default class ApplicationUpdate extends React.PureComponent {
 
             <DateInput
               handleChangeField={this.handleChangeField}
-              date={this.state.createdAt}
+              date={this.state.updated}
+              fieldName="updated"
             />
 
             <FormControlButtons

@@ -1,3 +1,5 @@
+import uuidv4 from 'uuid/v4';
+
 /**
  * updateApplication updates an application record in an array of applications
  *
@@ -6,7 +8,7 @@
  * @returns {array<applications>}
  */
 export const updateApplication = (applications, updatedApp) => applications.map((app) => {
-  if (app.createdAt === updatedApp.createdAt) {
+  if (app.id === updatedApp.id) {
     return updatedApp;
   }
   return app;
@@ -19,7 +21,7 @@ export const updateApplication = (applications, updatedApp) => applications.map(
  * @returns {array<application>}
  */
 export const deleteApplication = (applications, application) => applications.filter((app) => {
-  if (app.createdAt === application.createdAt) {
+  if (app.id === application.id) {
     return false;
   }
   return true;
@@ -33,4 +35,4 @@ export const deleteApplication = (applications, application) => applications.fil
  */
 export const createApplication = (application) => Object.assign({},
   application,
-  (application.createdAt) ? {} : { createdAt: Date.now() });
+  { id: uuidv4() });

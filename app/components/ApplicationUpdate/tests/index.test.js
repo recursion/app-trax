@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import uuidv4 from 'uuid/v4';
 import ApplicationUpdate from '../ApplicationUpdate';
 
 describe('ApplicationUpdate', () => {
@@ -8,18 +9,21 @@ describe('ApplicationUpdate', () => {
       name: 'Test',
       contact: 'testers',
       state: [{ notes: '', status: 'Considering' }],
-      createdAt: Date.now()
+      createdAt: Date.now(),
+      id: uuidv4()
     };
     const wrapper = mount(<ApplicationUpdate item={item} />);
     const test = wrapper.find('#status').props().value;
     expect(test).toEqual('Considering');
   });
+
   it('calls update with no args when cancel is clicked', () => {
     const item = {
       name: 'Test',
       contact: 'testers',
       state: [{ notes: '', status: 'Applied' }],
-      createdAt: Date.now()
+      createdAt: Date.now(),
+      id: uuidv4()
     };
     const update = jest.fn();
     const wrapper = mount(<ApplicationUpdate item={item} update={update} />);
@@ -27,12 +31,14 @@ describe('ApplicationUpdate', () => {
     expect(update).toBeCalled();
     expect(update).toBeCalledWith();
   });
+
   it('calls update with an item when submit is clicked', () => {
     const item = {
       name: 'Test',
       contact: 'testers',
       state: [{ notes: '', status: 'Applied' }],
-      createdAt: Date.now()
+      createdAt: Date.now(),
+      id: uuidv4()
     };
     const update = jest.fn();
     const wrapper = mount(<ApplicationUpdate item={item} update={update} />);
@@ -43,6 +49,7 @@ describe('ApplicationUpdate', () => {
     expect(update).toBeCalled();
     expect(update.mock.calls[0]).not.toEqual(null);
   });
+
   it('adds an updatedAt property to the status object', () => {
     const item = {
       name: 'Test',

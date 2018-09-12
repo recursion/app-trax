@@ -14,7 +14,8 @@ describe('ApplicationManager', () => {
           company: 'Test',
           contact: 'test',
           state: [{ status: 'Testing', notes: '' }],
-          createdAt: Date.now()
+          createdAt: Date.now(),
+          id: 'lkjasdlf9109123lk109d'
         }
       ]}
     />);

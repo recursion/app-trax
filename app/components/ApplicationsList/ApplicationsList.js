@@ -7,7 +7,7 @@ const ApplicationsList = (props) => (
   <ul className="applications-list container">
     {props.apps.map((app) => (
       <ApplicationItem
-        key={app.createdAt}
+        key={app.id}
         update={props.update}
         viewHistory={props.viewHistory}
         edit={props.edit}
