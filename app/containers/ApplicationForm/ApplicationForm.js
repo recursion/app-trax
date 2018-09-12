@@ -25,7 +25,7 @@ class ApplicationForm extends React.PureComponent {
 
     try {
       const { id } = props.match.params;
-      const app = props.applications.filter((a) => (a.createdAt === parseInt(id, 10)))[0];
+      const app = props.applications.filter((a) => (a.id === id))[0];
       this.item = app || {};
       if (app.state) {
         this.item.notes = getCurrent(app.state).notes;
