@@ -1,5 +1,6 @@
 $border-color: white;
 .application-item:first-of-type {
+  margin-top: 1px;
   border-top: 1px solid $border-color;
 }
 .application-item:last-of-type {
