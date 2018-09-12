@@ -19,17 +19,16 @@ const setup = (propOverrides) => {
         createdAt: Date.now(),
         id: 'lkj2s8lf9109123lk109d-alsd2333'
       }
-    ]
+    ],
+    updateApplication: jest.fn()
   }, propOverrides);
 
-  const updateApplication = jest.fn();
 
-  const wrapper = shallow(<ApplicationManager {...props} updateApplication={updateApplication} />);
+  const wrapper = shallow(<ApplicationManager {...props} />);
 
   return {
     props,
-    wrapper,
-    updateApplication
+    wrapper
   };
 };
 
@@ -40,12 +39,9 @@ describe('ApplicationManager', () => {
   });
 
   it('should render an applications list when applications exist', () => {
-    const { updateApplication, props: { applications } } = setup();
+    const { props } = setup();
     const wrapper = mount(
-      <ApplicationManager
-        applications={applications}
-        updateApplication={updateApplication}
-      />
+      <ApplicationManager {...props} />
     );
     expect(wrapper.find('.applications-list').length).toEqual(1);
   });
@@ -58,6 +54,7 @@ describe('ApplicationManager', () => {
       expect(wrapper.state('item')).toEqual(applications[0]);
     });
   });
+
   describe('finishUpdateItem', () => {
     it('should set showUpdateForm to false and item to null when called', () => {
       const { wrapper } = setup();
@@ -66,13 +63,13 @@ describe('ApplicationManager', () => {
       expect(wrapper.state('item')).toEqual(null);
     });
     it('does not call updateApplication when no item is passed in', () => {
-      const { updateApplication, wrapper } = setup();
+      const { props, wrapper } = setup();
       wrapper.instance().finishUpdateItem();
-      expect(updateApplication).not.toBeCalled();
+      expect(props.updateApplication).not.toBeCalled();
     });
 
     it('should call updateApplication when an item is passed in', () => {
-      const { updateApplication, wrapper, props: { applications } } = setup();
+      const { wrapper, props: { applications, updateApplication } } = setup();
       const updatedItem = Object.assign(applications[0], {
         company: 'UpdatedName',
         contact: 'me@you.com'
