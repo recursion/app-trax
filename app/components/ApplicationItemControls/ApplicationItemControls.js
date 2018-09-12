@@ -6,7 +6,7 @@ const ApplicationItemControls = (props) => (
   <span className="application-item__controls">
     <Link
       className="router-link is-pulled-right is-small"
-      to={`/applications/edit/${props.app.createdAt}`}
+      to={`/applications/edit/${props.app.id}`}
     >
       <span className="icon is-size-7">
         <i className="fas fa-edit"></i>
@@ -16,7 +16,7 @@ const ApplicationItemControls = (props) => (
       (props.itemState.length > 1) &&
         <Link
           className="application-item__history-button router-link is-pulled-right is-small"
-          to={`/applications/history/${props.app.createdAt}`}
+          to={`/applications/history/${props.app.id}`}
         >
           <span className="icon is-size-7">
             <i className="fas fa-history"></i>
