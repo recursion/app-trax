@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 
-const printDate = (date) => {
+const formatDate = (date) => {
   const d = new Date(date);
   return d.toLocaleDateString();
 };
@@ -10,7 +10,7 @@ const printDate = (date) => {
 const ApplicationStateNode = (state) => (
   <div className="application-history__node">
     <div className="has-text-centered has-text-weight-bold">
-      {printDate(state.updated)}: {state.status}
+      {formatDate(state.updated)}: {state.status}
     </div>
     {state.notes}
   </div>
