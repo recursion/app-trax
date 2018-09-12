@@ -54,7 +54,7 @@ describe('ApplicationUpdate', () => {
     const item = {
       name: 'Test',
       contact: 'testers',
-      state: [{ notes: '', status: 'Applied', updatedAt: Date.now() }],
+      state: [{ notes: '', status: 'Applied', updated: Date.now() }],
       createdAt: Date.now()
     };
     const update = jest.fn();
