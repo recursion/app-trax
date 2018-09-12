@@ -37,8 +37,6 @@ export default class ApplicationManager extends React.PureComponent {
           <ApplicationsList
             apps={this.props.applications}
             update={this.startUpdateItem}
-            edit={this.startEditItem}
-            viewHistory={this.viewHistory}
           />
         }
       </article>
