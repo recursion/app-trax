@@ -2,6 +2,9 @@
 
 A simple job application status tracker. This application only runs and stores data locally (for now), allowing you to easily track the progress of your job hunt by adding companies you've applied to - then tracking their status and adding notes as the process progresses.
 
+Demo: https://lab.recursionslaboratory.com
+
+
 Starter project cloned from the boilerplate: https://github.com/flexdinesh/react-redux-boilerplate 
 
 ## Features / Todo
