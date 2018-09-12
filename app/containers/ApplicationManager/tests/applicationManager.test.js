@@ -20,9 +20,8 @@ const setup = (propOverrides) => {
         id: 'lkj2s8lf9109123lk109d-alsd2333'
       }
     ],
-    updateApplication: jest.fn()
+    updateApplication: jest.fn(),
   }, propOverrides);
-
 
   const wrapper = shallow(<ApplicationManager {...props} />);
 
