@@ -24,6 +24,7 @@ export default class ApplicationItem extends React.PureComponent {
     const { company, state } = this.props.app;
     const { status } = getCurrent(state);
     const showNameBasedOnSize = (str) => {
+      if (!window.matchMedia) return str;
       if (window.matchMedia('(max-width: 320px)').matches) {
         return (str.length < 12) ? str : `${str.slice(0, 12)}...`;
       }
