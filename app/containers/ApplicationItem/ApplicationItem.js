@@ -29,11 +29,11 @@ export default class ApplicationItem extends React.PureComponent {
 
     const trimCompanyName = (str) => {
       if (!window.matchMedia) return str;
-      if (window.matchMedia('(max-width: 320px)').matches) {
+      if (window.matchMedia('(max-width: 320px)').matches && status.length > 8) {
         return (str.length < 10) ? str : `${str.slice(0, 10)}...`;
       }
 
-      if (window.matchMedia('(max-width: 414px)').matches) {
+      if (window.matchMedia('(max-width: 414px)').matches && status.length > 8) {
         return (str.length < 14) ? str : `${str.slice(0, 14)}...`;
       }
       return str;
