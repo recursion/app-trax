@@ -56,4 +56,16 @@ describe('ApplicationUpdate', () => {
     expect(update).toBeCalled();
     expect('createdAt' in update.mock.calls[0][0]).toBe(true);
   });
+
+  it('updates the date correctly when it has been set', () => {
+    const { wrapper, props: { update } } = setup();
+    const input = wrapper.find('#date-input');
+    const formatDate = (d) => new Date(d).toISOString().split('T')[0];
+    input.simulate('change', { target: { value: '2018-01-01' } });
+    expect(wrapper.find('#date-input').props().value).toEqual('2018-01-01');
+    wrapper.find('.application-form__submit-button').simulate('click');
+    expect(update).toBeCalled();
+    const data = update.mock.calls[0][0];
+    expect(formatDate(data.state[0].updated)).toEqual('2018-01-01');
+  });
 });

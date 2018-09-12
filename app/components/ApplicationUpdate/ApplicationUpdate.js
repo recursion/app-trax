@@ -52,7 +52,7 @@ export default class ApplicationUpdate extends React.PureComponent {
                 this.props.item.state.unshift({
                   notes: this.state.notes,
                   status: this.state.status,
-                  updated: Date.now()
+                  updated: this.state.updated
                 });
                 this.props.update(Object.assign({}, this.props.item, {
                   state: this.props.item.state

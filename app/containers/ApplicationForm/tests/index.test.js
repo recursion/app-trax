@@ -126,6 +126,24 @@ describe('ApplicationForm', () => {
         expect(submittedApplication.state[0].status).toEqual('Applied');
         expect('updated' in submittedApplication.state[0]).toEqual(true);
       });
+
+      it('updates state with correct date', () => {
+        const company = 'Test Company';
+        const formatDate = (d) => new Date(d).toISOString().split('T')[0];
+
+        const { props: { addApplication }, wrapper } = setup();
+        const companyNameInput = wrapper.find('#company');
+        companyNameInput.simulate('change', { target: { value: company } });
+
+        wrapper.find('#date-input').simulate('change', { target: { value: '2018-01-01' } });
+
+        wrapper.find('.application-form__submit-button').simulate('click');
+
+        const submittedApplication = addApplication.mock.calls[0][0];
+
+        expect(formatDate(submittedApplication.state[0].updated)).toEqual('2018-01-01');
+        expect('updated' in submittedApplication.state[0]).toEqual(true);
+      });
     });
   });
 

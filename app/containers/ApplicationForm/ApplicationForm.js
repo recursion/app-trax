@@ -75,7 +75,7 @@ class ApplicationForm extends React.PureComponent {
         const nextState = updateCurrent(this.item.state, {
           notes: this.state.notes,
           status: this.state.status,
-          updated: Date.now()
+          updated: this.state.createdAt
         });
 
         const data = Object.assign(this.item, {
@@ -94,7 +94,7 @@ class ApplicationForm extends React.PureComponent {
             {
               notes: this.state.notes,
               status: this.state.status,
-              updated: Date.now()
+              updated: this.state.createdAt
             }
           ]
         };
