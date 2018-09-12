@@ -19,21 +19,26 @@ const ApplicationStateNode = (state) => (
 export default class ApplicationHistory extends React.PureComponent {
   static propTypes = {
     close: PropTypes.func,
-    application: PropTypes.object
+    applications: PropTypes.object,
+    id: PropTypes.string
   }
 
   constructor(props) {
     super(props);
-    const { id } = props.match.params;
-    const app = props.applications.filter((a) => (a.id === id))[0];
+    const { id } = props;
+    const [app] = props.applications.filter((a) => (a.id === id));
     this.item = app;
-    this.state = {};
   }
 
   render = () => {
     const createId = (k, i) => `${k}:${i}`;
     return (
-      <div className="application-history section">
+      <div className="application-history box">
+        <button className="button is-small is-danger is-pulled-right" onClick={this.props.close}>
+          <span className="icon">
+            <i className="fas fa-times"></i>
+          </span>
+        </button>
         <h1
           className="application-history__title has-text-weight-bold subtitle has-text-centered"
         >
