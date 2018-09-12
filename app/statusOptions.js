@@ -2,6 +2,7 @@ const statusOptions = [
   'Considering',
   'Applied',
   'Recieved Reply',
+  'Cancelled',
   'No Reply',
   'Responded',
   'Response Required',
