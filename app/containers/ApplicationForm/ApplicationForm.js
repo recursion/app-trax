@@ -77,12 +77,13 @@ class ApplicationForm extends React.PureComponent {
           status: this.state.status,
           updated: Date.now()
         });
-        const data = {
+
+        const data = Object.assign(this.item, {
           company: this.state.company,
           contact: this.state.contact,
-          createdAt: this.item.createdAt,
           state: nextState
-        };
+        });
+
         this.props.updateApplication(data);
       } else {
         const data = {
