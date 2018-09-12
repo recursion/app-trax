@@ -24,8 +24,8 @@ const ContactInput = (props) => (
 );
 
 ContactInput.propTypes = {
-  contact: PropTypes.string,
-  handleChangeField: PropTypes.func
+  contact: PropTypes.string.isRequired,
+  handleChangeField: PropTypes.func.isRequired
 };
 
 export default ContactInput;
