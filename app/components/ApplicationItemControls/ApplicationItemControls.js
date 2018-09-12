@@ -14,21 +14,22 @@ const ApplicationItemControls = (props) => (
     </Link>
     {
       (props.itemState.length > 1) &&
-        <Link
-          className="application-item__history-button router-link is-pulled-right is-small"
-          to={`/applications/history/${props.app.id}`}
-        >
-          <span className="icon is-size-7">
-            <i className="fas fa-history"></i>
-          </span>
-        </Link>
+      <button
+        className="application-item__history-button"
+        onClick={() => props.viewHistory(props.app)}
+      >
+        <span className="icon is-size-7 has-text-link">
+          <i className="fas fa-history"></i>
+        </span>
+      </button>
     }
   </span>
 );
 
 ApplicationItemControls.propTypes = {
   itemState: PropTypes.array,
-  app: PropTypes.object
+  app: PropTypes.object,
+  viewHistory: PropTypes.func
 };
 
 export default ApplicationItemControls;

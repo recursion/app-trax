@@ -10,6 +10,7 @@ const ApplicationsList = (props) => (
         key={app.id}
         update={props.update}
         app={app}
+        viewHistory={props.viewHistory}
       />
     ))}
   </ul>
@@ -18,6 +19,7 @@ const ApplicationsList = (props) => (
 ApplicationsList.propTypes = {
   apps: PropTypes.array.isRequired,
   update: PropTypes.func.isRequired,
+  viewHistory: PropTypes.func
 };
 
 export default ApplicationsList;

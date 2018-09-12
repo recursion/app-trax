@@ -79,4 +79,28 @@ describe('ApplicationManager', () => {
       expect(updateApplication).toBeCalledWith(updatedItem);
     });
   });
+  describe('toggleViewHistory', () => {
+    it('sets viewHistory to true and item to item when called with an item', () => {
+      const { wrapper, props } = setup();
+      expect(wrapper.state('viewHistory')).toEqual(false);
+      wrapper.instance().toggleViewHistory(props.applications[0]);
+      expect(wrapper.state('viewHistory')).toEqual(true);
+      expect(wrapper.state('item')).toEqual(props.applications[0]);
+    });
+
+    it('sets viewHistory to false and item to null when called without an item', () => {
+      const { wrapper, props } = setup();
+      expect(wrapper.state('viewHistory')).toEqual(false);
+      wrapper.instance().toggleViewHistory();
+      expect(wrapper.state('viewHistory')).toEqual(false);
+      expect(wrapper.state('item')).toEqual(null);
+
+      wrapper.instance().toggleViewHistory(props.applications[0]);
+      expect(wrapper.state('viewHistory')).toEqual(true);
+      expect(wrapper.state('item')).toEqual(props.applications[0]);
+      wrapper.instance().toggleViewHistory();
+      expect(wrapper.state('viewHistory')).toEqual(false);
+      expect(wrapper.state('item')).toEqual(null);
+    });
+  });
 });
