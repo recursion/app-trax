@@ -17,7 +17,7 @@ const DateInput = (props) => (
             min="2010-01-01"
             max={formatDate(new Date(Date.now()))}
             value={formatDate(props.date)}
-            onChange={(e) => props.handleChangeField('createdAt', e.target.value)}
+            onChange={(e) => props.handleChangeField('createdAt', Date.parse(e.target.value))}
           />
         </div>
       </div>
