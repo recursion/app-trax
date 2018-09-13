@@ -30,10 +30,7 @@ const App = () => (
       <Route path="/applications/create" component={ApplicationForm} />
       <Route
         path="/applications/edit/:id"
-        render={(props) => {
-          console.log(props)
-          return <ApplicationForm id={props.match.params.id} />;
-        }}
+        render={(p) => <ApplicationForm id={p.match.params.id} />}
       />
       <Route path="" component={NotFoundPage} />
     </Switch>
