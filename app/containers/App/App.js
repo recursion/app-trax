@@ -19,7 +19,7 @@ import './style.scss';
 const App = () => (
   <div className="app-wrapper">
     <Helmet
-      titleTemplate="%s - Job Application Tracking Made Simple!"
+      titleTemplate="%s - Empower your job search!"
       defaultTitle="App-Trax"
     >
       <meta name="description" content="Easily manage your job search progress." />
