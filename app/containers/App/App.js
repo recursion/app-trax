@@ -11,7 +11,6 @@ import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
 import ApplicationManager from 'containers/ApplicationManager/Loadable';
 import ApplicationForm from 'containers/ApplicationForm';
-import ApplicationHistory from 'containers/ApplicationHistory';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -29,8 +28,13 @@ const App = () => (
     <Switch>
       <Route exact path="/" component={ApplicationManager} />
       <Route path="/applications/create" component={ApplicationForm} />
-      <Route path="/applications/edit/:id" component={ApplicationForm} />
-      <Route path="/applications/history/:id" component={ApplicationHistory} />
+      <Route
+        path="/applications/edit/:id"
+        render={(props) => {
+          console.log(props)
+          return <ApplicationForm id={props.match.params.id} />;
+        }}
+      />
       <Route path="" component={NotFoundPage} />
     </Switch>
     <Footer />
