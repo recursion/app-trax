@@ -8,7 +8,6 @@ A simple job application status tracker. This application only runs and stores d
 
 Demo: https://lab.recursionslaboratory.com
 
-
 Starter project cloned from the boilerplate: https://github.com/flexdinesh/react-redux-boilerplate 
 
 ## Todo
