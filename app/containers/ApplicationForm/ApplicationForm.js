@@ -81,6 +81,7 @@ class ApplicationForm extends React.PureComponent {
         const data = Object.assign(this.item, {
           company: this.state.company,
           contact: this.state.contact,
+          createdAt: this.state.createdAt,
           state: nextState
         });
 
