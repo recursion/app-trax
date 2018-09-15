@@ -7,7 +7,8 @@ import NotesInput from 'components/NotesInput';
 import StatusInput from 'components/StatusInput';
 import FormControlButtons from 'components/FormControlButtons';
 import DateInput from 'components/DateInput';
-import { getCurrent, updateCurrent } from '../../status.utils';
+import { getCurrent } from '../../status.utils';
+import { appFromData, updateApplication } from '../../application.utils';
 import './style.scss';
 
 class ApplicationForm extends React.PureComponent {
@@ -68,37 +69,17 @@ class ApplicationForm extends React.PureComponent {
   }
 
   handleSubmit = () => {
+    // validate form data - currenly we only care that company is not empty
     if (this.state.company === '') {
       this.setState(() => ({ companyHelpMsg: true }));
     } else {
+      // if we have an item. then we are editing
       if (this.item.company) {
-        const nextState = updateCurrent(this.item.state, {
-          notes: this.state.notes,
-          status: this.state.status,
-          updated: this.state.createdAt
-        });
-
-        const data = Object.assign(this.item, {
-          company: this.state.company,
-          contact: this.state.contact,
-          createdAt: this.state.createdAt,
-          state: nextState
-        });
-
+        const data = updateApplication(this.item, this.state);
         this.props.updateApplication(data);
+      // otherwise we are creating a new application
       } else {
-        const data = {
-          company: this.state.company,
-          contact: this.state.contact,
-          createdAt: this.state.createdAt,
-          state: [
-            {
-              notes: this.state.notes,
-              status: this.state.status,
-              updated: this.state.createdAt
-            }
-          ]
-        };
+        const data = appFromData(this.state);
         this.props.addApplication(data);
       }
       this.close();

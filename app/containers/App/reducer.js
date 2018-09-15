@@ -13,7 +13,7 @@
 import { fromJS } from 'immutable';
 
 import { DELETE_APPLICATION, ADD_APPLICATION, UPDATE_APPLICATION } from './constants';
-import { updateApplication, createApplication, deleteApplication } from '../../application.utils';
+import { updateApplications, createApplication, deleteApplication } from '../../application.utils';
 import { loadState } from '../../localStorage';
 
 // The initial state of the App
@@ -26,7 +26,7 @@ function appReducer(state = initialState, action) {
     case UPDATE_APPLICATION:
       return state
         .set('applications',
-          fromJS(updateApplication(state.get('applications').toJS(),
+          fromJS(updateApplications(state.get('applications').toJS(),
             action.application))
         );
     case ADD_APPLICATION:
