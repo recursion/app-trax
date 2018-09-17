@@ -4,35 +4,35 @@
 
 import { createSelector } from 'reselect';
 
-const selectApplicationManager = (state) => state.get('applicationForm');
+const selectApplicationForm = (state) => state.get('applicationForm');
 
 const makeSelectCompany = () => createSelector(
-  selectApplicationManager,
+  selectApplicationForm,
   (s) => s.get('company')
 );
 
 const makeSelectContact = () => createSelector(
-  selectApplicationManager,
+  selectApplicationForm,
   (s) => s.get('contact')
 );
 
 const makeSelectCreatedAt = () => createSelector(
-  selectApplicationManager,
+  selectApplicationForm,
   (s) => s.get('createdAt')
 );
 
 const makeSelectState = () => createSelector(
-  selectApplicationManager,
+  selectApplicationForm,
   (s) => s.get('state')
 );
 
 const makeSelectId = () => createSelector(
-  selectApplicationManager,
+  selectApplicationForm,
   (s) => s.get('id')
 );
 
 export {
-  selectApplicationManager,
+  selectApplicationForm,
   makeSelectCompany,
   makeSelectContact,
   makeSelectCreatedAt,
