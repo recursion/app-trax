@@ -1,4 +1,5 @@
-import {} from './constants';
+import { SUBMIT_NEW, SUBMIT_EDIT } from './constants';
+import { updateCurrent } from '../../status.utils';
 
 /*
  * App Actions
@@ -16,3 +17,40 @@ import {} from './constants';
  *        return { type: YOUR_ACTION_CONSTANT, var: var }
  *    }
  */
+export function submitNew(data) {
+  const application = {
+    company: data.company,
+    contact: data.contact,
+    createdAt: data.createdAt,
+    state: [
+      {
+        notes: data.notes,
+        status: data.status,
+        updated: data.createdAt
+      }
+    ]
+  };
+  return {
+    type: SUBMIT_NEW,
+    application
+  };
+}
+
+export function submitEdit(prev, next) {
+  const nextState = updateCurrent(prev.state, {
+    notes: next.notes,
+    status: next.status,
+    updated: next.createdAt
+  });
+
+  const application = Object.assign(prev, {
+    company: next.company,
+    contact: next.contact,
+    createdAt: next.createdAt,
+    state: nextState
+  });
+  return {
+    type: SUBMIT_EDIT,
+    application
+  };
+}

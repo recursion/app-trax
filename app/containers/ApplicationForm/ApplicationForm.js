@@ -8,7 +8,6 @@ import StatusInput from 'components/StatusInput';
 import FormControlButtons from 'components/FormControlButtons';
 import DateInput from 'components/DateInput';
 import { getCurrent } from '../../status.utils';
-import { appFromData, updateApplication } from '../../application.utils';
 import './style.scss';
 
 class ApplicationForm extends React.PureComponent {
@@ -73,14 +72,12 @@ class ApplicationForm extends React.PureComponent {
     if (this.state.company === '') {
       this.setState(() => ({ companyHelpMsg: true }));
     } else {
-      // if we have an item. then we are editing
+      // if we have an item then we are editing
       if (this.item.company) {
-        const data = updateApplication(this.item, this.state);
-        this.props.updateApplication(data);
+        this.props.updateApplication(this.item, this.state);
       // otherwise we are creating a new application
       } else {
-        const data = appFromData(this.state);
-        this.props.addApplication(data);
+        this.props.addApplication(this.state);
       }
       this.close();
     }

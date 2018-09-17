@@ -82,69 +82,6 @@ describe('ApplicationForm', () => {
       wrapper.find('.application-form__submit-button').simulate('click');
       expect(addApplication).toBeCalled();
     });
-
-    it('passes the form data to the addApplication function when submit is clicked', () => {
-      const notes = 'Wootsy doots and wutsy wuts';
-      const company = 'Test Company';
-
-      const { props: { addApplication }, wrapper } = setup();
-      const companyNameInput = wrapper.find('#company');
-      companyNameInput.simulate('change', { target: { value: company } });
-
-      const notesInput = wrapper.find('#notes');
-      notesInput.simulate('change', { target: { value: notes } });
-
-      wrapper.find('.application-form__submit-button').simulate('click');
-
-      const submittedApplication = addApplication.mock.calls[0][0];
-      expect(addApplication).toBeCalled();
-      expect('company' in submittedApplication);
-      expect('state' in submittedApplication);
-      expect(submittedApplication.company).toEqual(company);
-      expect(submittedApplication.state[0].notes).toEqual(notes);
-      expect(submittedApplication.state[0].status).toEqual('Applied');
-    });
-
-    describe('Returned Application Data', () => {
-      it('creates a state property that is an array of objects with notes, status, and updated props', () => {
-        const notes = 'Wootsy doots and wutsy wuts';
-        const company = 'Test Company';
-
-        const { props: { addApplication }, wrapper } = setup();
-        const companyNameInput = wrapper.find('#company');
-        companyNameInput.simulate('change', { target: { value: company } });
-
-        const notesInput = wrapper.find('#notes');
-        notesInput.simulate('change', { target: { value: notes } });
-
-        wrapper.find('.application-form__submit-button').simulate('click');
-
-        const submittedApplication = addApplication.mock.calls[0][0];
-
-        expect('state' in submittedApplication);
-        expect(Array.isArray(submittedApplication.state)).toEqual(true);
-        expect(submittedApplication.state[0].status).toEqual('Applied');
-        expect('updated' in submittedApplication.state[0]).toEqual(true);
-      });
-
-      it('updates state with correct date', () => {
-        const company = 'Test Company';
-        const formatDate = (d) => new Date(d).toISOString().split('T')[0];
-
-        const { props: { addApplication }, wrapper } = setup();
-        const companyNameInput = wrapper.find('#company');
-        companyNameInput.simulate('change', { target: { value: company } });
-
-        wrapper.find('#date-input').simulate('change', { target: { value: '2018-01-01' } });
-
-        wrapper.find('.application-form__submit-button').simulate('click');
-
-        const submittedApplication = addApplication.mock.calls[0][0];
-
-        expect(formatDate(submittedApplication.state[0].updated)).toEqual('2018-01-01');
-        expect('updated' in submittedApplication.state[0]).toEqual(true);
-      });
-    });
   });
 
   describe('Edit existing', () => {
@@ -173,23 +110,6 @@ describe('ApplicationForm', () => {
       wrapper.find('.application-form__submit-button').simulate('click');
       expect(updateApplication).toBeCalled();
       expect(updateApplication.mock.calls[0][0].state.length).toEqual(2);
-    });
-
-    it('updates all changed fields successfully on edit', () => {
-      const { props: { updateApplication }, wrapper } = setup({}, { id: 'lkjasdlf9109123lk109d' });
-
-      wrapper.find('#company').simulate('change', { target: { value: 'FU' } });
-      wrapper.find('#contact').simulate('change', { target: { value: 'me@you.com' } });
-      wrapper.find('#status').simulate('change', { target: { value: 'Offer Accepted' } });
-      wrapper.find('#notes').simulate('change', { target: { value: 'Hope this works out' } });
-      wrapper.find('.application-form__submit-button').simulate('click');
-
-      expect(updateApplication).toBeCalled();
-      expect(updateApplication.mock.calls[0][0].company).toEqual('FU');
-      expect(updateApplication.mock.calls[0][0].contact).toEqual('me@you.com');
-      expect(updateApplication.mock.calls[0][0].state.length).toEqual(2);
-      expect(updateApplication.mock.calls[0][0].state[0].status).toEqual('Offer Accepted');
-      expect(updateApplication.mock.calls[0][0].state[0].notes).toEqual('Hope this works out');
     });
 
     it('has a non-null id property', () => {
