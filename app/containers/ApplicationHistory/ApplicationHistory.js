@@ -19,7 +19,7 @@ const ApplicationStateNode = (state) => (
 export default class ApplicationHistory extends React.PureComponent {
   static propTypes = {
     close: PropTypes.func,
-    applications: PropTypes.object,
+    applications: PropTypes.array,
     id: PropTypes.string
   }
 
