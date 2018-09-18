@@ -52,10 +52,10 @@ export default class ApplicationManager extends React.PureComponent {
           />
         }
         {(this.state.viewHistory) &&
-          <Modal close={() => this.toggleViewHistory()} showCloseButton={false} >
+          <Modal close={this.toggleViewHistory} showCloseButton={false} >
             <ApplicationHistory
               id={this.state.item.id}
-              close={() => this.toggleViewHistory()}
+              close={this.toggleViewHistory}
             />
           </Modal>
         }
