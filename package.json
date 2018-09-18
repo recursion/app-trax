@@ -4,7 +4,7 @@
   "description": "Simple job application progress tracker.",
   "repository": {
     "type": "git",
-    "url": "git://github.com/recutrions/app-trax"
+    "url": "git://github.com/recursion/app-trax"
   },
   "engines": {
     "npm": ">=3",
