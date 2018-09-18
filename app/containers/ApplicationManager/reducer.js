@@ -4,7 +4,6 @@
  */
 
 import { fromJS } from 'immutable';
-import {} from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
