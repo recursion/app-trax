@@ -3,13 +3,15 @@ import reducer from '../reducer';
 import { CHANGE_FIELD, SUBMIT_NEW, SUBMIT_EDIT } from '../constants';
 
 // record type for defining a field
+/*
 const field = {
   name: '', // field name
   type: 'text', // field type (or input type in html element terms) - text, textarea, date, email, link
   value: null, // the value
-  validator: () => { /* a function that returns a bool -- indicating if value is valid */ },
+  validator: () => { // a function that returns a bool -- indicating if value is valid },
   changed: Date.now()
 };
+*/
 
 const initialState = fromJS({
   company: '',
@@ -80,10 +82,10 @@ describe('ApplicationForm Reducer', () => {
     });
 
     it('when the fieldName is createdAt', () => {
-      const fieldName = 'date';
+      const fieldName = 'createdAt';
       const nextValue = Date.now();
       const result = reducer(initialState, { type: CHANGE_FIELD, fieldName, nextValue }).toJS();
-      expect(result.date).toEqual(nextValue);
+      expect(result.createdAt).toEqual(nextValue);
     });
   });
 });
