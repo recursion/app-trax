@@ -29,7 +29,7 @@ import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 // import 'styles/theme.scss';
 
 // import tailwind css entry
-import 'styles/main.css';
+import 'styles/main.pcss';
 
 import configureStore from './configureStore';
 
