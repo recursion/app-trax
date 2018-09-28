@@ -85,10 +85,10 @@ class ApplicationForm extends React.PureComponent {
 
   render = () => (
     <section className="application-form w-full max-w-xs">
-      <h1 className="application-form__title">
+      <h1 className="application-form__title text-lg flex justify-center">
         {(this.item.company) ?
           'Edit' :
-          'Create New'
+          'Add Company'
         }
       </h1>
       <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
