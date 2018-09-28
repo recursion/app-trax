@@ -40,13 +40,13 @@ export default class ApplicationItem extends React.PureComponent {
     };
 
     return (
-      <li className="application-item has-text-white has-background-dark">
-        <div className="application-item__status-bar">
+      <li className="application-item border border-black border-collapse clearfix">
+        <div className="application-item__status-bar p-1">
           <ApplicationExpansionControl
             expanded={this.state.expanded}
             toggleExpand={this.toggleExpand}
           />
-          <span className="application-item__name subtitle has-text-white is-size-5">
+          <span className="application-item__name ml-1">
             {trimCompanyName(company)}
           </span>
           <ApplicationStatus

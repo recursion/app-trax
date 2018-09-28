@@ -6,7 +6,7 @@ import './style.scss';
 export default class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <div className="flex items-center justify-between bg-black text-white p-1 mb-2">
+      <div className="flex items-center justify-between bg-black text-white p-1">
         <h1 className="">App-Trax</h1>
         {(this.props.location.pathname === '/') &&
           <Link className="header-btn" to="/applications/create">

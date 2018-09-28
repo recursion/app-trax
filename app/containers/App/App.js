@@ -17,7 +17,7 @@ import Footer from 'components/Footer';
 import './style.scss';
 
 const App = () => (
-  <div className="app-wrapper">
+  <div className="container mx-auto">
     <Helmet
       titleTemplate="%s - Empower your job search!"
       defaultTitle="App-Trax"

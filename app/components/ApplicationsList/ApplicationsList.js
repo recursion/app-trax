@@ -4,7 +4,7 @@ import ApplicationItem from 'containers/ApplicationItem';
 import './style.scss';
 
 const ApplicationsList = (props) => (
-  <ul className="applications-list container">
+  <ul className="applications-list list-reset">
     {props.apps.map((app) => (
       <ApplicationItem
         key={app.id}

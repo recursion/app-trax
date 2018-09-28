@@ -75,7 +75,7 @@ class ApplicationForm extends React.PureComponent {
       // if we have an item then we are editing
       if (this.item.company) {
         this.props.updateApplication(this.item, this.state);
-      // otherwise we are creating a new application
+        // otherwise we are creating a new application
       } else {
         this.props.addApplication(this.state);
       }
@@ -84,14 +84,14 @@ class ApplicationForm extends React.PureComponent {
   }
 
   render = () => (
-    <section className="application-form section">
-      <h1 className="application-form__title subtitle has-text-centered">
+    <section className="application-form w-full max-w-xs">
+      <h1 className="application-form__title">
         {(this.item.company) ?
           'Edit' :
           'Create New'
         }
       </h1>
-      <div className="container">
+      <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <CompanyInput
           handleChangeField={this.handleChangeField}
           company={this.state.company}
@@ -124,7 +124,6 @@ class ApplicationForm extends React.PureComponent {
           onCancel={this.close}
           showDelete={this.item.company !== undefined}
         />
-
       </div>
     </section>
   )

@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const ApplicationItemControls = (props) => (
-  <span className="application-item__controls">
+  <span className="application-item__controls p-2">
     <Link
-      className="router-link is-pulled-right is-small"
+      className="router-link"
       to={`/applications/edit/${props.app.id}`}
     >
-      <span className="icon is-size-7">
+      <span className="icon mr-2">
         <i className="fas fa-edit"></i>
       </span>
     </Link>
@@ -18,7 +18,7 @@ const ApplicationItemControls = (props) => (
         className="application-item__history-button"
         onClick={() => props.viewHistory(props.app)}
       >
-        <span className="icon is-size-7 has-text-link">
+        <span className="icon">
           <i className="fas fa-history"></i>
         </span>
       </button>

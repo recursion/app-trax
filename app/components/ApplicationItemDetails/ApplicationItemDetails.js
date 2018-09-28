@@ -4,17 +4,17 @@ import { getCurrent } from '../../status.utils';
 import './style.scss';
 
 const ApplicationItemDetails = (props) => (
-  <div className="application-details container is-clearfix">
+  <div className="application-details clearfix">
     <div className="">
       <p>{getCurrent(props.state).notes}</p>
     </div>
     {(props.contact) &&
-      <div className="application-details__contact is-pulled-left">
+      <div className="application-details__contact float-left">
         <label className="application-details__contact-label is-size-7">Contact:</label>
         <span className="application-details__contact-value is-size-7">{props.contact}</span>
       </div>
     }
-    <span className="is-pulled-right">{props.children}</span>
+    <span className="float-right">{props.children}</span>
   </div>
 );
 ApplicationItemDetails.propTypes = {

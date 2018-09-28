@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { MemoryRouter } from 'react-router';
-
 import Header from '../Header';
 
 describe('<Header />', () => {
@@ -19,6 +18,6 @@ describe('<Header />', () => {
         <Header location={{ pathname: '/' }} />
       </MemoryRouter>
     );
-    expect(renderedComponent.exists('.router-link')).toEqual(true);
+    expect(renderedComponent.exists('.header-btn')).toEqual(true);
   });
 });

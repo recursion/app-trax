@@ -4,24 +4,24 @@ import PropTypes from 'prop-types';
 const getColor = (status) => {
   switch (status) {
     case 'Considering':
-      return 'has-text-warning';
+      return 'text-yellow';
     case 'Rejected':
     case 'Offer Declined':
     case 'No Reply':
-      return 'has-text-danger';
+      return 'text-red';
     default:
-      return 'has-text-success';
+      return 'text-green';
   }
 };
 
 const ApplicationStatus = (props) => (
   <button
-    className={'application-item__status is-pulled-right is-size-7'}
+    className={'application-item__status float-right text-xs'}
     onClick={() => props.update(props.app)}
   >
-    <span className={` ${getColor(props.status)}`}>
+    <span className={`${getColor(props.status)}`}>
       {props.status}
-      <span className="application-item__status-update-icon icon is-small">
+      <span className="application-item__status-update-icon icon ml-2">
         <i className="fas fa-sync-alt"></i>
       </span>
     </span>

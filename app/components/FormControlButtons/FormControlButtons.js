@@ -3,34 +3,28 @@ import PropTypes from 'prop-types';
 
 const FormControlButtons = (props) => (
   <div className="form-control-buttons">
-    <div className="field is-grouped is-grouped-centered">
-      <div className="control">
-        <button
-          className="application-form__submit-button button is-primary"
-          onClick={props.onSubmit}
-        >
-          Submit
-        </button>
-      </div>
-      <div className="control">
-        <button
-          className="application-form__cancel-button button is-text"
-          onClick={props.onCancel}
-        >
-          Cancel
-        </button>
-      </div>
+    <div className="flex items-center justify-between">
+      <button
+        className="application-form__submit-button bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        onClick={props.onSubmit}
+      >
+        Submit
+      </button>
+      <button
+        className="application-form__cancel-button"
+        onClick={props.onCancel}
+      >
+        Cancel
+      </button>
     </div>
     {(props.showDelete) ?
-      <div className="field is-grouped is-grouped-centered">
-        <div className="control">
-          <button
-            className="application-form__delete-button button is-danger"
-            onClick={props.onDelete}
-          >
-            Delete
-          </button>
-        </div>
+      <div className="flex items-center justify-center">
+        <button
+          className="application-form__delete-button mt-4 bg-red hover:bg-red-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          onClick={props.onDelete}
+        >
+          Delete
+        </button>
       </div> : ''
     }
   </div>
