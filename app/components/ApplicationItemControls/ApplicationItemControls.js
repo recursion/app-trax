@@ -3,19 +3,11 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const ApplicationItemControls = (props) => (
-  <span className="application-item__controls p-2">
-    <Link
-      className="router-link"
-      to={`/applications/edit/${props.app.id}`}
-    >
-      <span className="icon mr-2">
-        <i className="fas fa-edit"></i>
-      </span>
-    </Link>
+  <span className="application-item__controls p-2 text-xs">
     {
       (props.itemState.length > 1) &&
       <button
-        className="application-item__history-button"
+        className="application-item__history-button text-blue hover-blue-darker mr-2"
         onClick={() => props.viewHistory(props.app)}
       >
         <span className="icon">
@@ -23,6 +15,14 @@ const ApplicationItemControls = (props) => (
         </span>
       </button>
     }
+    <Link
+      className="text-blue hover-blue-darker"
+      to={`/applications/edit/${props.app.id}`}
+    >
+      <span className="icon">
+        <i className="fas fa-edit"></i>
+      </span>
+    </Link>
   </span>
 );
 
