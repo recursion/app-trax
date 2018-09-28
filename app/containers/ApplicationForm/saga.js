@@ -10,6 +10,7 @@ import {
 } from 'containers/ApplicationForm/selectors';
 import { SUBMIT_NEW, SUBMIT_EDIT } from './constants';
 
+// TODO: Changed these to be single selectors, that return a single object combining this data derived from state.
 export function* submitNew() {
   const company = yield select(makeSelectCompany());
   const contact = yield select(makeSelectContact());

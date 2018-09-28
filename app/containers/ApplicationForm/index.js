@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { deleteApplication } from 'containers/App/actions';
-import { submitNew, submitEdit } from './actions';
+import { submitNew, submitEdit, changeField } from './actions';
 import saga from './saga';
 
 import reducer from './reducer';
@@ -14,7 +14,8 @@ import { makeSelectApplications } from '../App/selectors';
 const mapDispatchToProps = (dispatch) => ({
   addApplication: (formData) => dispatch(submitNew(formData)),
   updateApplication: (prev, next) => dispatch(submitEdit(prev, next)),
-  deleteApplication: (app) => dispatch(deleteApplication(app))
+  deleteApplication: (app) => dispatch(deleteApplication(app)),
+  changeField: (fieldName, nextValue) => dispatch(changeField(fieldName, nextValue))
 });
 
 const mapStateToProps = createStructuredSelector({

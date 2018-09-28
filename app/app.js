@@ -27,7 +27,9 @@ import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 
 // Import CSS reset and Global Styles
 // import 'styles/theme.scss';
-import 'styles/theme.css';
+
+// import tailwind css entry
+import 'styles/main.css';
 
 import configureStore from './configureStore';
 

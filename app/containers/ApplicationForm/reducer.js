@@ -4,7 +4,7 @@
  */
 
 import { fromJS } from 'immutable';
-import { SUBMIT_NEW, SUBMIT_EDIT } from './constants';
+import { SUBMIT_NEW, SUBMIT_EDIT, CHANGE_FIELD } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
@@ -31,6 +31,10 @@ function applicationFormReducer(state = initialState, action) {
         .set('createdAt', action.application.createdAt)
         .set('state', action.application.state)
         .set('id', action.application.id);
+
+    case CHANGE_FIELD:
+      return state
+        .set(action.fieldName, action.nextValue);
 
     default:
       return state;

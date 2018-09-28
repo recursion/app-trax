@@ -46,7 +46,7 @@ describe('ApplicationForm', () => {
 
   it('renders a Create New title when no application props were passed in', () => {
     const { wrapper } = setup();
-    expect(wrapper.find('.application-form__title').text()).toEqual('Create New');
+    expect(wrapper.find('.application-form__title').text()).toEqual('Add Company');
   });
 
   it('renders an Edit title when given a valid application id', () => {

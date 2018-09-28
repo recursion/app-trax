@@ -1,4 +1,4 @@
-import { SUBMIT_NEW, SUBMIT_EDIT } from './constants';
+import { CHANGE_FIELD, SUBMIT_NEW, SUBMIT_EDIT } from './constants';
 import { updateCurrent } from '../../status.utils';
 
 /*
@@ -52,5 +52,13 @@ export function submitEdit(prev, next) {
   return {
     type: SUBMIT_EDIT,
     application
+  };
+}
+
+export function changeField(fieldName, nextValue) {
+  return {
+    type: CHANGE_FIELD,
+    fieldName,
+    nextValue
   };
 }

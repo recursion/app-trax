@@ -10,3 +10,4 @@
  */
 export const SUBMIT_NEW = 'apptrax/form/SUBMIT_NEW';
 export const SUBMIT_EDIT = 'apptrax/form/SUBMIT_EDIT';
+export const CHANGE_FIELD = 'apptrax/form/CHANGE_FIELD';

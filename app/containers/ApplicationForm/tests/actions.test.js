@@ -1,5 +1,5 @@
-import { submitNew, submitEdit } from '../actions';
-import { SUBMIT_NEW, SUBMIT_EDIT } from '../constants';
+import { changeField, submitNew, submitEdit } from '../actions';
+import { CHANGE_FIELD, SUBMIT_NEW, SUBMIT_EDIT } from '../constants';
 
 describe('submitNew', () => {
   it('formats form data into an application object', () => {
@@ -49,5 +49,14 @@ describe('submitEdit', () => {
     expect(application.state[0].notes).toEqual(updatedData.notes);
     expect(application.state[0].status).toEqual(updatedData.status);
     expect(application.company).toEqual(updatedData.company);
+  });
+
+  describe('changeField', () => {
+    it('returns the CHANGE_FIELD type and updates the fields value to the next value', () => {
+      const { type, fieldName, nextValue } = changeField('contact', 'me@you.com');
+      expect(type).toEqual(CHANGE_FIELD);
+      expect(fieldName).toEqual('contact');
+      expect(nextValue).toEqual('me@you.com');
+    });
   });
 });
