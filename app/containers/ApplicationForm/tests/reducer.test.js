@@ -7,7 +7,7 @@ const field = {
   name: '', // field name
   type: 'text', // field type (or input type in html element terms) - text, textarea, date, email, link
   value: null, // the value
-  validator: () => { /* pass a function that returns a bool indicating if value is valid */ },
+  validator: () => { /* a function that returns a bool -- indicating if value is valid */ },
   changed: Date.now()
 };
 
