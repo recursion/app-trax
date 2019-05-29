@@ -6,7 +6,7 @@ A simple job application status tracker. This application only runs and stores d
 - May look at something like pouchDB -> couchDB in the future for syncing across multiple devices)
 - Fairly good test coverage at this point (around 80%) - would obviously like to get this higher.
 
-Demo: https://lab.recursionslaboratory.com
+Demo: https://app-trax.surge.sh
 
 Starter project cloned from the boilerplate: https://github.com/flexdinesh/react-redux-boilerplate 
 
