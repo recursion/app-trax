@@ -2,6 +2,7 @@
   "name": "app-trax",
   "version": "0.1.0",
   "description": "Simple job application progress tracker.",
+  "homepage": "https://recursion.github.io/app-trax",
   "repository": {
     "type": "git",
     "url": "git://github.com/recursion/app-trax"
@@ -16,6 +17,8 @@
     "prebuild": "npm run build:clean",
     "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
     "build:clean": "rimraf ./build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "cross-env NODE_ENV=development node server",
     "start:production": "npm run test && npm run build && npm run start:prod",
     "start:prod": "cross-env PORT=5353 NODE_ENV=production node server",
@@ -37,6 +40,7 @@
     "cross-env": "^5.1.6",
     "express": "4.16.3",
     "fontfaceobserver": "2.0.13",
+    "gh-pages": "^2.0.1",
     "history": "4.7.2",
     "hoist-non-react-statics": "2.5.0",
     "immutable": "3.8.2",
